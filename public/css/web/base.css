@@ -75,8 +75,11 @@ opacity:1
 }
 }
 /*search*/
-.searchbox { background: #fff; float:right; width: 280px; height: 36px;}
-.searchbox .input { float:left; border: none; outline: none; height: 36px; line-height: 36px; z-index: 10; font-size: 16px; color: #333; width: 240px; padding-left: 10px;  }
+.t_u { background: #555; float:left; width: 280px; height: 36px;}
+.t_u a{color:#afafaf;}
+.searchbox { background: #fff; float:right; width: 280px; height: 36px;margin-top: 20px}
+.login_button{ background: #fff; float:right; width: 250px; height: 36px; }
+.searchbox .input {background:#f7f8fa; float:left; border: none; outline: none; height: 36px; line-height: 36px; z-index: 10; font-size: 16px; color: #333; width: 240px; padding-left: 10px;  }
 .searchbox .search_ico { float:right; z-index: 90;  border: none; outline: none; width:30px; height: 36px; display: block;  background:url(/images/searchbg.png) center no-repeat}
  
 
@@ -85,7 +88,7 @@ opacity:1
 /*nav*/
 nav { width: 1120px; margin: auto; }
 #mnavh { display: none; width: 30px; height: 40px; text-align: center; padding: 0 5px }
-#starlist { float:right; margin-left: 50px }
+#starlist { margin-left: 50px }
 #starlist li { float: left; width: 110px; text-align: center; display: block; font-size: 18px }
 .navicon { display: block; position: relative; width: 30px; height: 5px; background-color: #333; margin-top: 20px }
 .navicon:before, .navicon:after { content: ''; display: block; width: 30px; height: 5px; position: absolute; background: #333; -webkit-transition-property: margin, -webkit-transform; transition-property: margin, -webkit-transform; transition-property: margin, transform; transition-property: margin, transform, -webkit-transform; -webkit-transition-duration: 300ms; transition-duration: 300ms; }

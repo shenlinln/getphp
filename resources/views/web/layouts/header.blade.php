@@ -9,6 +9,8 @@
 <link href="{{URL::asset('css/web/base.css')}}" rel="stylesheet">
 <link href="{{URL::asset('css/web/index.css')}}" rel="stylesheet">
 <link href="{{URL::asset('css/web/m.css')}}" rel="stylesheet">
+<link href="{{URL::asset('css/web/login.css')}}" rel="stylesheet">
+<link href="{{URL::asset('css/web/reg.css')}}" rel="stylesheet">
 <script src="{{URL::asset('js/web/jquery.min.js')}}" ></script>
 <script src="{{URL::asset('js/web/hc-sticky.js')}}"></script>
 <script src="{{URL::asset('js/web/comm.js')}}"></script>
@@ -21,13 +23,9 @@
   <div class="navbar">
     <div class="topbox">
       <p class="welcome">PHP是一种流行的通用脚本语言，特别适合web开发。</p>
-      <div class="searchbox">
-          <form action="/plus/search.php" method="post" name="searchform">
-            <input type="hidden" name="kwtype" value="0" />
-            <input class="input" placeholder="想搜点什么呢.."  name="q" type="text">
-            <input class="search_ico" type="submit" name="Submit" value="" />
-          </form>
-      </div>
+       <div class="t_u">
+             <a href="{{route('users_reg')}}" target="_blank" title="新用户注册">新用户注册</a> | <a href="{{route('users_login')}}" title="会员登录">会员登录</a>
+       </div>
     </div>
   </div>
   <div class="header-navigation">
@@ -62,6 +60,13 @@
           </li> 
           
       </ul>
+       <div class="searchbox">
+      <form action="/plus/search.php" method="post" name="searchform">
+            <input type="hidden" name="kwtype" value="0" />
+            <input class="input" placeholder="想搜点什么呢.."  name="q" type="text">
+            <input class="search_ico" type="submit" name="Submit" value="" />
+          </form>
+          </div>
     </nav>
   </div>
 </header>
