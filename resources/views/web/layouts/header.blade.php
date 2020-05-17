@@ -20,7 +20,7 @@
 <header id="header">
   <div class="navbar">
     <div class="topbox">
-      <p class="welcome">您好，欢迎您访问个人博客网站HTML5源码织梦模板，在这里，更是一个记录世界、时代的平台！</p>
+      <p class="welcome">PHP是一种流行的通用脚本语言，特别适合web开发。</p>
       <div class="searchbox">
           <form action="/plus/search.php" method="post" name="searchform">
             <input type="hidden" name="kwtype" value="0" />
@@ -35,28 +35,27 @@
       <div class="logo"><a href="/">PHP中文网</a></div>
       <h2 id="mnavh"><span class="navicon"></span></h2>
       <ul id="starlist">
-         
-        <li class="selected"><a href="/" >PHP公告</a> </li>
-        <li ><a href="/yingxiaotuiguang/" id="">PHP下载</a></li>
-          <li class="menu"><a href="/seo/" id="">SEO基础</a>
+       <li class="selected"><a href="/" >PHP发布</a> </li>
+       <li ><a href="/shizhananli/" id="">Laravel框架</a></li>
+       <li class="menu"><a href="{{route('n_index')}}" id="">业界资讯</a>
             <ul class="sub">
-            
-              <li><a href="/wangzhanyouhua/">网站优化</a></li>
-            
-              <li><a href="/SEOzixun/">SEO资讯</a></li>
-            
-              <li><a href="/seojiaocheng/">SEO教程</a></li>
-              
-            </ul>
-          </li><li ><a href="/shizhananli/" id="">实战案例</a>
+              <li><a href="/seojiaocheng/">编程语言资讯</a></li>
+              <li><a href="/wangzhanyouhua/">行业资讯</a></li>
+              <li><a href="/SEOzixun/">综合资讯</a></li>
+             </ul>
+          </li>
+      <li class="menu"><a href="{{route('n_index')}}" id="">相关技术</a>
+            <ul class="sub">
+              <li><a href="/seojiaocheng/">MySQL</a></li>
+              <li><a href="/wangzhanyouhua/">Nginx</a></li>
+              <li><a href="/SEOzixun/">Linux</a></li>
+             </ul>
+          </li>
+         <li ><a href="/wangluozixun/" id="">Nginx</a>
             <ul style="display:none">
-              
             </ul>
-          </li><li ><a href="/wangluozixun/" id="">行业资讯</a>
-            <ul style="display:none">
-              
-            </ul>
-          </li><li ><a href="/guanyu/" id="">关于我</a>
+
+          <li ><a href="/guanyu/" id="">PHP官网</a>
             <ul style="display:none">
               
             </ul>
@@ -66,7 +65,9 @@
     </nav>
   </div>
 </header>
+<div class="wrapper">
  @yield('content')
+ </div>
 <footer>
   <div class="footer">
     <div class="wxbox">

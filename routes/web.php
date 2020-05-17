@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 Route::namespace('Web')->group(function () {
 Route::get('/',"IndexController@index");
-Route::get('index/detail',"IndexController@Detail");
+Route::get('news_detail/{id}.html',"IndexController@Detail")->where(['id' => '[0-9]+'])->name('i_detail'); //首页列表详细页
+Route::get('news_index',"NewsController@News_Index")->name('n_index');//资讯首页
 });
