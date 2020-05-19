@@ -21,14 +21,16 @@
     <div class="bloglist">
       <ul>
       <!--  每页显示十五条 -->
-         <li> <i class="blogpic"><a href="/SEOzixun/196.html" title="seo是什么意思？小白通俗易懂篇" target="_blank"><img src="http://k67.zzidc.info/images/defaultpic.gif" alt="seo是什么意思？小白通俗易懂篇"> </a></i>
+      @foreach($data as $key => $value)
+         <li> <i class="blogpic"><a href="/SEOzixun/196.html" title="{{$value->title}}" target="_blank"><img src="http://k67.zzidc.info/images/defaultpic.gif" alt="seo是什么意思？小白通俗易懂篇"> </a></i>
           <dl>
-            <dt><a href="/SEOzixun/196.html" title="seo是什么意思？小白通俗易懂篇" target="_blank">PHP 7.4.6已发布</a></dt>
-            <dd><span class="bloginfo">PHP开发团队宣布PHP 7.4.6立即可用。这是一个安全发行版，其中还包含几个bug修复。鼓励所有PHP 7.4用户升级到这个版本</span>
-              <p class="timeinfo"><span class="lanmu"><a href="/SEOzixun/">发布时间</a></span><span class="date">2019-03-19</span></p>
-              <a class="read" href="/SEOzixun/196.html">阅读更多</a> </dd>
+            <dt><a href="/SEOzixun/196.html" title="{{$value->title}}" target="_blank">{{$value->title}}</a></dt>
+            <dd><span class="bloginfo">{{$value->introduction}}</span>
+              <p class="timeinfo"><span class="lanmu"><a href="/SEOzixun/">发布时间</a></span><span class="date">{{date('Y-m-d',$value->release_time)}}</span></p>
+              <a class="read" href="{{route('i_detail',['id' => $value->id])}}">阅读更多</a> </dd>
           </dl>
         </li>
+     @endforeach   
       </ul>
     </div>
     <!--bloglist end--> 

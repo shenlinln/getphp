@@ -3,37 +3,29 @@
     @parent
 @endsection
 @section('content')
+<style>
+
+</style>
   <main>
-    <h2 class="place">您现在的位置是：<a href='http://localhost/'>主页</a> > <a href='/seo/'>SEO基础</a> > <a href='/SEOzixun/'>SEO资讯</a> > </h2>
+    <h2 class="place">您现在的位置是：<a href='http://localhost/'>主页</a> > <a href='/seo/'>{{$data->title}}</a></h2>
     <div class="infosbox">
       <div class="newsview">
-        <h3 class="news_title">PHP 7.4.6已发布</h3>
+        <h3 class="news_title">{{$data->title}}</h3>
         <div class="bloginfo">
           <ul>
-            <li class="author">php发布 </li>
-            <li class="lmname"><a href="/SEOzixun/">SEO资讯</a></li>
-            <li class="timer">2019-03-19</li>
-            <li class="view"><script src="/plus/count.php?view=yes&aid=196&mid=1" type='text/javascript' language="javascript"></script>人已阅读</li>
+            <li class="author">{{$data->author}} </li>
+            <li class="timer">{{date('Y-m-d',$data->release_time)}}</li>
+            <li class="view">{{$data->read_count}}人已阅读</li>
           </ul>
         </div>
         <!--<div class="tags"></div>-->
         <div class="news_about">
         <!-- 简介 -->
-                       简介
+        {{$data->introduction}}
         </div>
         <div class="news_content">
          <!-- 内容 -->
-         PHP开发团队宣布PHP 7.4.6立即可用。这是一个安全发行版，其中还包含几个bug修复。
-                          鼓励所有PHP 7.4用户升级到这个版本。
-有关PHP 7.4.6的源代码下载，请访问我们的下载页面，Windows源代码和二进制文件可以在Windows .php.net/download/上找到。变更列表记录在变更日志中。
-当前稳定的PHP 7.4.6 (Changelog)
-php-7.4.6.tar。bz2 (sig) [12,429Kb] 2020年5月14日
-a6ed9475695d2056322a3f2c00fee61a122a7fce138a0e25694320c5dd1d2348
-php-7.4.6.tar.gz (sig) [16,115Kb] 2020年5月14日
-2 a37bab4e308c4e3867083137b7cce4a3f1d996ae231b383c1a83609cec3fed0
-php-7.4.6.tar。xz (sig) [10,044Kb] 2020年5月14日
-d740322f84f63019622b9f369d64ea5ab676547d2bdcf12be77a5a4cffd06832
-Windows操作系统下载
+        {!!$data->content!!}
         </div>
       </div>
       <div class="share">
@@ -47,7 +39,6 @@ Windows操作系统下载
         <h2>相关文章</h2>
         <ul>
           <li><a href="/SEOzixun/195.html" title="seo入门需要多久？学seo入门在哪学靠谱？">seo入门需要多久？学seo入门在哪学靠谱？</a></li>
-
         </ul>
       </div>
       <div class="news_pl">

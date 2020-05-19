@@ -6,14 +6,14 @@
 <meta name="keywords" content="PHP中文网，php语言，Linux,MySQL">
 <meta name="description" content="网站描述">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="{{URL::asset('css/web/base.css')}}" rel="stylesheet">
-<link href="{{URL::asset('css/web/index.css')}}" rel="stylesheet">
-<link href="{{URL::asset('css/web/m.css')}}" rel="stylesheet">
-<link href="{{URL::asset('css/web/login.css')}}" rel="stylesheet">
-<link href="{{URL::asset('css/web/reg.css')}}" rel="stylesheet">
-<script src="{{URL::asset('js/web/jquery.min.js')}}" ></script>
-<script src="{{URL::asset('js/web/hc-sticky.js')}}"></script>
-<script src="{{URL::asset('js/web/comm.js')}}"></script>
+<link href="{{URL::asset('web/css/base.css')}}" rel="stylesheet">
+<link href="{{URL::asset('web/css/index.css')}}" rel="stylesheet">
+<link href="{{URL::asset('web/css/m.css')}}" rel="stylesheet">
+<link href="{{URL::asset('web/css/login.css')}}" rel="stylesheet">
+<link href="{{URL::asset('web/css/reg.css')}}" rel="stylesheet">
+<script src="{{URL::asset('web/js/jquery.min.js')}}" ></script>
+<script src="{{URL::asset('web/js/hc-sticky.js')}}"></script>
+<script src="{{URL::asset('web/js/comm.js')}}"></script>
 <!--[if lt IE 9]>
 <script src="/style/js/modernizr.js"></script>
 <![endif]-->

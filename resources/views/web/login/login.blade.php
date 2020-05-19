@@ -28,7 +28,7 @@
         </form>
         <div class="main_right">
 
-            <div class="tips">我们诚挚的邀请您加入<br/>PHP1.CN 全球最大中文PHP开发社区！</div>
+            <div class="tips">我们诚挚的邀请您加入<br/>GETPHP.CN 这里是最全的PHP资讯网站！</div>
             <div class="box">
                 还没有账户：<a href="https://www.php1.cn/?s=user/reg/index">马上注册</a><br/><br/>
                             </div>
