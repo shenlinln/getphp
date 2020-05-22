@@ -29,12 +29,24 @@ class Release extends Model
         $data = $this::where('id','=',$id)->first();
         return $data;
     }
+    public function admin_release_update($data){
+        $id = intval($data['id']);
+        if(!empty($data['images'])){
+            $array = ['title' => trim($data['title']),'author' => trim($data['author']),'release_time' => trim($data['release_time']),'keyword' => trim($data['keyword']),'introduction' => trim($data['introduction']),'content' => $data['content'],'update_at' => time(),'images' => $data['images']];   
+        }else{
+            $array = ['title' => trim($data['title']),'author' => trim($data['author']),'release_time' => trim($data['release_time']),'keyword' => trim($data['keyword']),'introduction' => trim($data['introduction']),'content' => $data['content'],'update_at' => time()];
+        }
+        $update = $this::where('id', $id)->update($array);
+        return $update;
+        
+    }
+    
     public function release_add($request){
         
         
         $rules = [
             'title' => 'required|string|max:40',
-            'author' => 'required|string',
+            'author' => 'required|string|max:2',
             'introduction' => 'required|string|max:200',
         ];
         $validate = Validator::make($request, $rules);
@@ -62,6 +74,9 @@ class Release extends Model
 
         if(isset($request['content']) && !empty($request['content'])){
             $this->content = $request['content'];
+        }
+        if(isset($request['images']) && !empty($request['images'])){
+            $this->images = $request['images'];
         }
         $this->read_count = 0;
         $this->create_at = time();

@@ -68,6 +68,11 @@ if(document.getElementById("release_add"))
 		self.location="/admin/release_add";
 	}
 }
+//更改发布按钮
+function release_edit(value){
+	let id = value;
+	self.location="/admin/release_edit/"+id;
+}
 /**
  * 发布详细
  */

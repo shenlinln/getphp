@@ -17,7 +17,7 @@
 
                 <div class="item_box">
                     <div class="type">验证码:</div>
-                    <div class="value"><input type="text" name="code" id="code" class="code" value=""/> &nbsp;<a href="javascript:;"> <img src='http://www.php1.cn/?s=vcode/index' onclick="this.src=this.src+'&'+Math.random()" /></a></div>
+                    <div class="value"><img src="captcha" onclick="this.src='captcha?'+Math.random();" class="l21"/></div>
                 </div>
                 <div class="item_box">
                     <div class="type"></div>

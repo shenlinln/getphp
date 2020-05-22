@@ -19,7 +19,9 @@ class ConcreteFactory
             'admin' =>'App\Model\Admin',
             'news' => 'App\Model\News',
             'release' => 'App\Model\Release',
-            'common' =>'App\Common\CommonFunction'
+            'membercenter' => 'App\Model\MemberCenter',
+            'common' =>'App\Common\CommonFunction',
+            'validateCode' => 'App\Common\ValidateCode'
            ];
     }
     

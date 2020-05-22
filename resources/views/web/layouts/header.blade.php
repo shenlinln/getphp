@@ -6,6 +6,7 @@
 <meta name="keywords" content="PHP中文网，php语言，Linux,MySQL">
 <meta name="description" content="网站描述">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="shortcut icon"  href="{{URL::asset('/web/images/favicon.ico')}}" >
 <link href="{{URL::asset('web/css/base.css')}}" rel="stylesheet">
 <link href="{{URL::asset('web/css/index.css')}}" rel="stylesheet">
 <link href="{{URL::asset('web/css/m.css')}}" rel="stylesheet">
@@ -14,6 +15,7 @@
 <script src="{{URL::asset('web/js/jquery.min.js')}}" ></script>
 <script src="{{URL::asset('web/js/hc-sticky.js')}}"></script>
 <script src="{{URL::asset('web/js/comm.js')}}"></script>
+
 <!--[if lt IE 9]>
 <script src="/style/js/modernizr.js"></script>
 <![endif]-->
@@ -49,7 +51,7 @@
               <li><a href="/SEOzixun/">Linux</a></li>
              </ul>
           </li>
-         <li ><a href="/wangluozixun/" id="">Nginx</a>
+         <li ><a href="/wangluozixun/" id="">问答</a>
             <ul style="display:none">
             </ul>
 
@@ -73,6 +75,7 @@
 <div class="wrapper">
  @yield('content')
  </div>
+ <script src="{{URL::asset('web/js/common.js')}}"></script>
 <footer>
   <div class="footer">
     <div class="wxbox">

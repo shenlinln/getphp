@@ -52,7 +52,7 @@
 											<div class="hidden-sm hidden-xs btn-group">
 											
 											   <button class="btn btn-xs btn-success" onclick="release_detail({{$value->id}})" ><i class="ace-icon fa fa-check bigger-120"></i>查看</button>
-												<button class="btn btn-xs btn-info"><i class="ace-icon fa fa-pencil bigger-120"></i>编辑</button>
+												<button class="btn btn-xs btn-info" onclick="release_edit({{$value->id}})"><i class="ace-icon fa fa-pencil bigger-120"></i>编辑</button>
 												<button class="btn btn-xs btn-danger"><i class="ace-icon fa fa-trash-o bigger-120"></i>删除</button>
 											</div>
 										</td>
