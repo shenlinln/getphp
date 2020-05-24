@@ -15,6 +15,7 @@ class IndexController extends Controller
         return $data;
     }
     public function Index(){
+       
         $releast = $this->setClass('release');
         $data = $releast->web_release_list();
         return view('web.index.index',compact('data'));

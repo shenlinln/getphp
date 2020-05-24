@@ -21,6 +21,8 @@ Route::get('/',"IndexController@index");
 Route::get('detail/{id}.html',"IndexController@detail")->where(['id' => '[0-9]+'])->name('i_detail');;//首页内页内容
 Route::get('news_detail/{id}.html',"NewsController@Detail")->where(['id' => '[0-9]+'])->name('n_detail'); //首页列表详细页
 Route::get('news_index',"NewsController@News_Index")->name('n_index');//资讯首页
+Route::get('Server',"WSController@Server");
+Route::get('Chat',"WSController@Chat");
 
 });
 //后台管理
