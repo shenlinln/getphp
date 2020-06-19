@@ -13,9 +13,9 @@
         <h3 class="news_title">{{$data->title}}</h3>
         <div class="bloginfo">
           <ul>
-            <li class="author">{{$data->author}} </li>
-            <li class="timer">{{date('Y-m-d',$data->release_time)}}</li>
-            <li class="view">{{$data->read_count}}人已阅读</li>
+            <li class="author">作者：{{$data->author}} </li>
+            <li class="timer">发布时间：{{date('Y-m-d',$data->release_time)}}</li>
+            <li class="view">{{$release_read_count}}人已阅读</li>
           </ul>
         </div>
         <!--<div class="tags"></div>-->
@@ -29,7 +29,7 @@
         </div>
       </div>
       <div class="share">
-        <p class="diggit"><a href="/SEOzixun/">返回栏目</a></p>
+        <p class="diggit"><a href="/SEOzixun/"></a></p>
       </div>
       <div class="nextinfo">
         <p>上一篇：<a href='/SEOzixun/195.html'>seo入门需要多久？学seo入门在哪学靠谱？</a> </p>
@@ -63,10 +63,9 @@
             <div class="dcmp-userinfo" id="_ajax_feedback">
               <label class="yzm"/>验证码: </label>
               <input type="text" name="validate" size="4" class="ipt-txt" style="text-transform:uppercase;"/>
-              <img id="vdimgck" align="absmiddle" onClick="this.src=this.src+'?'" style="cursor: pointer;" alt="看不清？点击更换" src="/include/vdimgck.php"/>
-              <input type="checkbox" name="notuser" id="dcmp-submit-guest" />
-              <label for="dcmp-submit-guest" />
-              匿名?
+             <img src="/p_captcha" onclick="this.src='/p_captcha?'+Math.random();" class="l21"/>
+              <label class="yzm"/>用户名: </label> <input type="text" name="notuser" class="l21" />
+            <label class="yzm"/>邮箱: </label> <input type="text" name="notuser" class="l21" />
               </label>
             </div>
             
@@ -83,12 +82,32 @@
 <!-- //评论表单区结束 --> 
 
 <!-- //评论内容区 --> 
-<a name='commettop'></a>
+
+<div class="mt1">
+  <dl class="tboxs">
+    <!-- //这两个ID的区块必须存在，否则JS会出错 -->
+    <dd id='commetcontentNew'><label>#1楼</label><span class="comment_date">2020-04-19 21:59</span>test</dd>
+    <dd id='commetcontent'>sdfsdfsdfsd</dd>
+    
+  </dl>
+</div>
+<div class="comment_vote">
+
+        </div>
+
 <div class="mt1">
   <dl class="tbox">
     <!-- //这两个ID的区块必须存在，否则JS会出错 -->
-    <dd id='commetcontentNew'></dd>
-    <dd id='commetcontent'></dd>
+    <dd id='commetcontentNew'>test</dd>
+    <dd id='commetcontent'>sdfsdfsdfsd</dd>
+  </dl>
+</div>
+
+<div class="mt1">
+  <dl class="tbox">
+    <!-- //这两个ID的区块必须存在，否则JS会出错 -->
+    <dd id='commetcontentNew'>test</dd>
+    <dd id='commetcontent'>sdfsdfsdfsd</dd>
   </dl>
 </div>
 <!--

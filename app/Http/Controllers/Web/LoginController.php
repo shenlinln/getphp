@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\DesignPatterns\ConcreteFactory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class LoginController extends Controller
 {
@@ -19,6 +20,10 @@ class LoginController extends Controller
     private string $verification;
     private string $nickname;
     private string $salt;
+    const  EMAIL = 'shen_lin_msof@hotmail.com';
+    const EMAILPASSWORD = 'SLL&%84869605';
+    const SECURE = 'STARTTLS';
+    const HOST = 'smtp.office365.com';
     public function Login(Request $request){
        
         return view('web.login.login');
@@ -67,4 +72,72 @@ class LoginController extends Controller
         }
         return view('web.login.registered');
     }
+    public function Mailbox_Verification(Request $request){
+        if($request->isMethod('post')){
+            $random = '';
+            $data = $request->except('_token');
+            $this->nickname = trim($data['nickname']);
+            $this->account_number = trim($data['account_number']);
+            $common = $this->setClass('common');
+            $random = $common->getRandomNumber(4);
+            Redis::SET($this->account_number,$random);
+           
+            $table ='<table border="0" width="100%" cellspacing="0" cellpadding="0" style="border-collapse:collapse;">
+                 <tbody><tr style=""><td height="28" style="line-height:28px;">&nbsp;</td></tr><tr><td style="">
+                 <span class="mb_text" style="font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;font-size:16px;line-height:21px;color:#141823;">'.$this->nickname.'，你好：您的验证码 <h1>'.$random.'</h1></span>
+                </td></tr><tr style=""><td height="28" style="line-height:28px;">&nbsp;</td></tr><tr><td style="">
+                <span class="mb_text" style="font-family:Helvetica Neue,Helvetica,Lucida Grande,tahoma,verdana,arial,sans-serif;font-size:16px;line-height:21px;color:#141823;">你已经注册了 PHP中文网。请验证帐户，完成注册步骤。</span>
+                </td></tr></tbody></table>';
+             $mail = $this->setClass('phpmailer');                            
+          try { 
+               //服务器配置
+             $mail->CharSet ="UTF-8";//设定邮件编码
+             $mail->SMTPDebug = 0;// 调试模式输出
+             $mail->isSMTP();// 使用SMTP
+             $mail->Host = self::HOST;// SMTP服务器
+             $mail->SMTPAuth = true;// 允许 SMTP 认证
+             $mail->Username = self::EMAIL;// SMTP 用户名  即邮箱的用户名
+             $mail->Password = self::EMAILPASSWORD; // SMTP 密码  部分邮箱是授权码(例如163邮箱)
+             $mail->SMTPSecure = self::SECURE;// 允许 TLS 或者ssl协议
+             $mail->Port = 587;
+             $mail->setFrom(self::EMAIL, 'PHP中文网');  //发件人
+             $mail->addAddress($this->account_number, $this->nickname);  // 收件人
+            //$mail->addAddress('ellen@example.com');  // 可添加多个收件人
+           // $mail->addReplyTo('xxxx@163.com', 'info'); //回复的时候回复给哪个邮箱 建议和发件人一致
+            //$mail->addCC('cc@example.com');//抄送
+            //$mail->addBCC('bcc@example.com');//密送
+            //发送附件
+            // $mail->addAttachment('../xy.zip');// 添加附件
+            // $mail->addAttachment('../thumb-1.jpg', 'new.jpg');    // 发送附件并且重命名
+            //Content
+             $mail->isHTML(true);// 是否以HTML文档格式发送  发送后客户端可直接显示对应HTML内容
+             $mail->Subject = '您好，请查收验证码';
+             $mail->Body    = $table;
+             $mail->AltBody = '如果邮件客户端不支持HTML则显示此内容';
+             $mail->send();
+             $request->session()->put('email',$this->account_number);
+            return json_encode(['bool' => true]);
+        } catch (\Exception $e) {
+            echo '邮件发送失败: ', $mail->ErrorInfo;
+        }
+        }
+        return view('web.login.mailbox_verification');
+    }
+    
+    public function Mailbox_Code(Request $request){
+        if($request->isMethod('post')){
+            $data = $request->except('_token');
+            $email = $request->session()->get('email');
+            $input_code = trim($data['code']);
+            $server_code = Redis::GET($email);
+           if(strcasecmp($input_code,$server_code) == 0){
+            
+                echo '验证成功';
+            }else{
+                echo '验证失败';
+            }
+        }
+        
+    }
+    
 }

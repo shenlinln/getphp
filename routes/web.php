@@ -16,13 +16,27 @@ use Illuminate\Support\Facades\Route;
 Route::namespace('Web')->group(function () {
 Route::get('login',"LoginController@Login")->name('users_login');//login
 Route::get('captcha',"LoginController@captcha");//验证码
+
 Route::match(['get','post'],'reg',"LoginController@Registered")->name('users_reg');//注册
+Route::match(['get','post'],'mailbox_verification',"LoginController@Mailbox_Verification")->name('mail_verif');//邮箱验证
+Route::post('mailbox_code',"LoginController@Mailbox_Code");
+
+
 Route::get('/',"IndexController@index");
 Route::get('detail/{id}.html',"IndexController@detail")->where(['id' => '[0-9]+'])->name('i_detail');;//首页内页内容
+Route::get('p_captcha',"IndexController@captcha");//PHP发布验证码
 Route::get('news_detail/{id}.html',"NewsController@Detail")->where(['id' => '[0-9]+'])->name('n_detail'); //首页列表详细页
+
+
 Route::get('news_index',"NewsController@News_Index")->name('n_index');//资讯首页
+Route::get('captcha',"NewsController@captcha");//新闻发布验证码
 Route::get('Server',"WSController@Server");
 Route::get('Chat',"WSController@Chat");
+
+
+
+Route::get('personal_index',"PersonalCenterController@index");
+
 
 });
 //后台管理

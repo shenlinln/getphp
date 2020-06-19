@@ -22,7 +22,7 @@
       <ul>
       <!--  每页显示十五条 -->
       @foreach($data as $key => $value)
-         <li> <i class="blogpic"><a href="/SEOzixun/196.html" title="{{$value->title}}" target="_blank"><img src="http://k67.zzidc.info/images/defaultpic.gif" alt="seo是什么意思？小白通俗易懂篇"> </a></i>
+         <li> <i class="blogpic"><a href="{{route('i_detail',['id' => $value->id])}}" title="{{$value->title}}" target="_blank"><img src="https://soucat.oss-cn-beijing.aliyuncs.com/{{$value->images}}" alt="{{$value->title}}"> </a></i>
           <dl>
             <dt><a href="/SEOzixun/196.html" title="{{$value->title}}" target="_blank">{{$value->title}}</a></dt>
             <dd><span class="bloginfo">{{$value->introduction}}</span>

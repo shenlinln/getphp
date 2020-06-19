@@ -57,7 +57,20 @@ class CommonFunction{
         }
         return $str;
     }
-
+    /**
+     * 获得随机数字
+     * @param $len
+     * @param $special
+     * @return string       返回随机字符串
+     */
+    function getRandomNumber($length = 16){
+        $chars = '0123456789';
+        $str = '';
+        for ($i = 0; $i < $length; $i++) {
+            $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
+        }
+        return $str;
+    }
     
 }
 

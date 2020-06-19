@@ -121,8 +121,8 @@ footer{ width:100%; overflow:hidden;background: #555; color:#ccc}
 
 /*评论------------*/
 .gbko{padding-left:3%}
-.mt1{background-color: #fff; overflow: hidden; width: 99%}
-.mt1 .tbox{ width: 100%; padding-top:2%}
+.mt1{background-color: #fff; overflow: hidden; width: 99%;}
+.mt1 .tbox{ width: 100%; padding-top:2%;border-bottom: 1px solid #eee;}
 .posttitle{ height: 22px; line-height: 22px; font-size:18px; font-weight: normal; border-left: 3px solid #3169b0; padding-left:8px; margin:8px 0px 12px 0; }
 .posttitle strong{ color: #3169b0; font-weight: normal;}
 .decmt-box2{width:98%;padding:6px 10px 6px 0;margin:0px auto;overflow:hidden;clear:both;}

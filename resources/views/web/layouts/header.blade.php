@@ -26,7 +26,7 @@
     <div class="topbox">
       <p class="welcome">PHP是一种流行的通用脚本语言，特别适合web开发。</p>
        <div class="t_u">
-             <a href="{{route('users_reg')}}" target="_blank" title="新用户注册">新用户注册</a> | <a href="{{route('users_login')}}" title="会员登录">会员登录</a>
+             <!--  <a href="{{route('users_reg')}}" target="_blank" title="新用户注册">新用户注册</a> | <a href="{{route('users_login')}}" title="会员登录">会员登录</a>-->
        </div>
     </div>
   </div>
@@ -36,7 +36,7 @@
       <h2 id="mnavh"><span class="navicon"></span></h2>
       <ul id="starlist">
        <li class="selected"><a href="/" >PHP发布</a> </li>
-       <li ><a href="/shizhananli/" id="">Laravel框架</a></li>
+       <li ><a href="/shizhananli/" id="">PHP应用</a></li>
        <li class="menu"><a href="{{route('n_index')}}" id="">业界资讯</a>
             <ul class="sub">
               <li><a href="/seojiaocheng/">编程语言资讯</a></li>
@@ -51,11 +51,8 @@
               <li><a href="/SEOzixun/">Linux</a></li>
              </ul>
           </li>
-         <li ><a href="/wangluozixun/" id="">问答</a>
-            <ul style="display:none">
-            </ul>
-
-          <li ><a href="/guanyu/" id="">PHP官网</a>
+        
+          <li ><a href="https://www.php.net/" id="">PHP官网</a>
             <ul style="display:none">
               
             </ul>

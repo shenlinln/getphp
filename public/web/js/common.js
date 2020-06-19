@@ -69,12 +69,33 @@ if(document.getElementById("register"))
 	            success:function(data){
 	            	 let json_data = JSON.parse(data);
 	            	 if(json_data.bool == true){
+	            		 let formData = new FormData();
+	            		 formData.append("account_number", account_number);
+	            		 formData.append("nickname", nickname);
+	            		 formData.append("_token", _token);
+	         	        httpHelper({
+	        	            type:'POST',
+	        	            async:'true',
+	        	            data:formData,
+	        	            url:'/mailbox_verification',
+	        	            success:function(data){
+	        	            	 let json_data = JSON.parse(data);
+	        	            	 if(json_data.bool == true){
+	        		            	 self.location='/mailbox_verification';
+	        	            	 }
+	        	            },
+	        	            error:function(){
+	        	            	let json_data = JSON.parse(err);
+	        	            	alert(err.message);
+	        	            	alert('失败');
+	        	            }
+	        	        });
 	            		
 		            	// self.location='/admin/main';
 	            	 }else{
 	            		 document.getElementById(json_data.Error_Message).innerHTML = json_data.message;
 	         			 document.getElementById(json_data.Error_Message).style.color = "red";
-	         			document.getElementById(json_data.Error_Message).style.fontSize = "12";
+	         			 document.getElementById(json_data.Error_Message).style.fontSize = "12";
 		            	 //self.location='/admin/login';
 	            	 }
 	            },
@@ -86,6 +107,36 @@ if(document.getElementById("register"))
 	        });
 		
 		
+	}
+}
+
+if(document.getElementById("mailbox_code"))
+{
+	document.getElementById("mailbox_code").onclick=function()
+	{
+	  let code = document.getElementById('code').value;	
+	  let _token = document.getElementById('_token').value;	
+		 let formData = new FormData();
+		 formData.append("code", code);
+		 formData.append("_token", _token);
+	        httpHelper({
+            type:'POST',
+            async:'true',
+            data:formData,
+            url:'/mailbox_code',
+            success:function(data){
+            	 let json_data = JSON.parse(data);
+            	 if(json_data.bool == true){
+	            	 //self.location='/mailbox_verification';
+            	 }
+            },
+            error:function(){
+            	let json_data = JSON.parse(err);
+            	alert(err.message);
+            	alert('失败');
+            }
+        });
+	 
 	}
 }
 

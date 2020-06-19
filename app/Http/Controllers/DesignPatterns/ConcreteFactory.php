@@ -21,6 +21,7 @@ class ConcreteFactory
             'release' => 'App\Model\Release',
             'membercenter' => 'App\Model\MemberCenter',
             'common' =>'App\Common\CommonFunction',
+            'phpmailer' =>'App\Common\PHPMailer',
             'ws' =>'App\Common\WS',
             'validateCode' => 'App\Common\ValidateCode'
            ];

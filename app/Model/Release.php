@@ -10,7 +10,7 @@ class Release extends Model
     protected  $table  = 'release';
     public $timestamps = false;
     public function web_release_list(){
-        $list = $this::select('id','title','introduction','release_time')->where('id','>','0')->orderBy('id','DESC')->paginate(15);
+        $list = $this::select('id','title','introduction','release_time','images')->where('id','>','0')->orderBy('id','DESC')->paginate(15);
         return $list;
     }
     public function web_release_detail($id){
@@ -78,7 +78,6 @@ class Release extends Model
         if(isset($request['images']) && !empty($request['images'])){
             $this->images = $request['images'];
         }
-        $this->read_count = 0;
         $this->create_at = time();
         $this->update_at = 0;
         $result = $this->save();
