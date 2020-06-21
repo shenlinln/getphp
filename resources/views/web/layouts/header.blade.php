@@ -26,7 +26,7 @@
     <div class="topbox">
       <p class="welcome">PHP是一种流行的通用脚本语言，特别适合web开发。</p>
        <div class="t_u">
-             <!--  <a href="{{route('users_reg')}}" target="_blank" title="新用户注册">新用户注册</a> | <a href="{{route('users_login')}}" title="会员登录">会员登录</a>-->
+             <a href="{{route('users_reg')}}" target="_blank" title="新用户注册">新用户注册</a> | <a href="{{route('users_login')}}" title="会员登录">会员登录</a>
        </div>
     </div>
   </div>

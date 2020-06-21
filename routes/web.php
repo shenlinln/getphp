@@ -36,7 +36,7 @@ Route::get('Chat',"WSController@Chat");
 
 
 Route::get('personal_index',"PersonalCenterController@index");
-
+Route::get('member_center',"MemberCenterController@index");
 
 });
 //后台管理

@@ -6,7 +6,7 @@
         <form action="https://www.php1.cn/?s=user/login/checkLogin&from=https%3A%2F%2Fwww.php1.cn%2F" method="post">
             <div class="main_left">
                 <div class="item_box">
-                    <div class="type">电子邮箱:</div>
+                    <div class="type">手机号码:</div>
                     <div class="value"><input type="text" name="user_name" id="user_name" class="txt" /></div>
                 </div>
 
