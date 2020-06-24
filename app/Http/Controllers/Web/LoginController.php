@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\DesignPatterns\ConcreteFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
+use App\Common\JSMS;
 
 class LoginController extends Controller
 {
@@ -24,6 +25,8 @@ class LoginController extends Controller
     const EMAILPASSWORD = 'SLL&%84869605';
     const SECURE = 'STARTTLS';
     const HOST = 'smtp.office365.com';
+    const  APPKEY = "01bc1da35c1959ff5525f0ad";
+    const MASTERSECRET = "f3fed959cb7fbf31814b3e0f";
     public function Login(Request $request){
        
         return view('web.login.login');
@@ -71,6 +74,25 @@ class LoginController extends Controller
             
         }
         return view('web.login.registered');
+    }
+    
+    
+    public function verificationMessage(Request $request){
+        
+        
+        if($request->isMethod('post')){
+            
+                $phone = $request->except('_token');
+                
+                $appKey = self::APPKEY;
+                $masterSecret = self::MASTERSECRET;
+                $client = new JSMS($appKey, $masterSecret);
+                $result =  $client->sendCode($phone['phone'],1);
+                $msg_id = $result['body']['msg_id'];
+                return json_encode(['bool' => 1,'msg_id' => $msg_id]);
+          
+        }
+        
     }
     public function Mailbox_Verification(Request $request){
         if($request->isMethod('post')){

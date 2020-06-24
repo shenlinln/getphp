@@ -23,8 +23,8 @@ class AdminNewsController extends Controller
         return view('admin.news.list',compact('news_type','data','news_audit'));
     }
     public function Admin_News_Add(Request $request){
-        $common = $this->setClass('common');
-        $news_type = $common->bf_news_type();
+        $newscategory = $this->setClass('newscategory');
+        $news_type = $newscategory->admin_news_category();
         $news = $this->setClass('news');
         if($request->isMethod('post')){
             $data = $request->except('_token');
@@ -32,7 +32,6 @@ class AdminNewsController extends Controller
                 $image_file = $request->file('news_image');
                 $dir_yeramonth =  date('Ym');
                 $image_url = Storage::putFile('uploads/news_image/'.$dir_yeramonth,$image_file);
-               
                 $image = ['news_image' => $image_url];
                 $merge = array_merge($data,$image);
                 $array_data = $merge;

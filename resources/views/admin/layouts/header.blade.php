@@ -401,7 +401,13 @@
 								</a>
 								<b class="arrow"></b>
 							</li>
-
+					        <li class="">
+								<a href="{{route('a_news_list')}}">
+									<i class="menu-icon fa fa-caret-right"></i>
+									  广告图
+								</a>
+								<b class="arrow"></b>
+							</li>
 						</ul>
 					</li>
 					<li class="">
@@ -476,8 +482,48 @@
 							</li>
 						</ul>
 					</li>
-
-
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-list"></i>
+							<span class="menu-text">评论管理</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<b class="arrow"></b>
+						<ul class="submenu">
+							<li class="">
+								<a href="tables.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									评论列表
+								</a>
+								<b class="arrow"></b>
+							</li>
+							<li class="">
+								<a href="tables.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									回复列表
+								</a>
+								<b class="arrow"></b>
+							</li>
+						</ul>
+					</li>
+					<li class="">
+						<a href="#" class="dropdown-toggle">
+							<i class="menu-icon fa fa-list"></i>
+							<span class="menu-text">会员管理</span>
+							<b class="arrow fa fa-angle-down"></b>
+						</a>
+						<b class="arrow"></b>
+						<ul class="submenu">
+							<li class="">
+								<a href="tables.html">
+									<i class="menu-icon fa fa-caret-right"></i>
+									会员列表
+								</a>
+								<b class="arrow"></b>
+							</li>
+							
+						</ul>
+					</li>
 				</ul><!-- /.nav-list -->
 
 				<div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">

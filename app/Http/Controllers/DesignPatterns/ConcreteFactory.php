@@ -18,8 +18,11 @@ class ConcreteFactory
         $this->typeList = [
             'admin' =>'App\Model\Admin',
             'news' => 'App\Model\News',
+            'newscategory' => 'App\Model\NewsCategory',
             'release' => 'App\Model\Release',
             'membercenter' => 'App\Model\MemberCenter',
+            'comment' => 'App\Model\Comment',
+            'reply' => 'App\Model\Reply',
             'common' =>'App\Common\CommonFunction',
             'phpmailer' =>'App\Common\PHPMailer',
             'ws' =>'App\Common\WS',

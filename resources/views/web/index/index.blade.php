@@ -24,7 +24,7 @@
       @foreach($data as $key => $value)
          <li> <i class="blogpic"><a href="{{route('i_detail',['id' => $value->id])}}" title="{{$value->title}}" target="_blank"><img src="https://soucat.oss-cn-beijing.aliyuncs.com/{{$value->images}}" alt="{{$value->title}}"> </a></i>
           <dl>
-            <dt><a href="/SEOzixun/196.html" title="{{$value->title}}" target="_blank">{{$value->title}}</a></dt>
+            <dt><a href="{{route('i_detail',['id' => $value->id])}}" title="{{$value->title}}" target="_blank">{{$value->title}}</a></dt>
             <dd><span class="bloginfo">{{$value->introduction}}</span>
               <p class="timeinfo"><span class="lanmu"><a href="/SEOzixun/">发布时间</a></span><span class="date">{{date('Y-m-d',$value->release_time)}}</span></p>
               <a class="read" href="{{route('i_detail',['id' => $value->id])}}">阅读更多</a> </dd>

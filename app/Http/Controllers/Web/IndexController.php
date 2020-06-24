@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Redis;
 
 class IndexController extends Controller
 {
+    protected  object $model_comment;
+    protected  object $model_reply;
+    
     protected $factory;
     protected  function setClass($class){
         $this->factory = new ConcreteFactory();
@@ -16,9 +19,6 @@ class IndexController extends Controller
         return $data;
     }
     public function Index(){
-     
-        
- 
         $releast = $this->setClass('release');
         $data = $releast->web_release_list();
         return view('web.index.index',compact('data'));
@@ -35,17 +35,52 @@ class IndexController extends Controller
       
         $releast = $this->setClass('release');
         $data = $releast->web_release_detail($id);
-        return view('web.index.detail',compact('data','release_read_count'));
+        $this->model_comment = $this->setClass('comment');
+        $comment = $this->model_comment->query_comment();
+        $this->model_reply = $this->setClass('reply');
+        $reply = $this->model_reply->query_reply();
+       
+        return view('web.index.detail',compact('data','release_read_count','comment','reply'));
     }
-    public  function captcha(Request $request)
-    {
-        $validateCode = $this->setClass('validateCode');
-        $validateCode->doimg();
-        $code = $validateCode->getCode();
-        $request->session()->put('code', $code);
+    
+    public function CommitPost(Request $request){
+        
+        $data = $request->except('_token');
+        $this->model_comment = $this->setClass('comment');
+        $array = ['topic_type' => 1,'from_uid' => 1];
+        $data_merge = array_merge($data,$array);
+        try {
+            $result = $this->model_comment->addComment($data_merge);
+            if(!empty($result)){
+                return json_encode(['bool' => true,'message' => "评论成功"]);
+            }
+        } catch (\Exception $e){
+            echo 'Message: '.$e->getMessage();
+        }
         
         
     }
+    
+    public function ReplyPost(Request $request){
+        
+        $data = $request->except('_token');
+        
+        $this->model_reply =  $this->setClass('reply');
+        try {
+            $result = $this->model_reply->addReply($data);
+            if(!empty($result)){
+                return json_encode(['bool' => true,'message' => "回复成功"]);
+            }
+        } catch (\Exception $e){
+            echo 'Message: '.$e->getMessage();
+        }
+        
+        
+        
+        
+    }
+    
+
     
 
 }

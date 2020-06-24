@@ -19,7 +19,7 @@
      <select   data-placeholder="Choose a State..." id="news_type">
 		<option value="0">==请选择==  </option>
 		@foreach($news_type as $key => $value)
-		<option value="{{$key}}">{{$value}}</option>
+		<option value="{{$value->id}}">{{$value->news_name}}</option>
 		@endforeach
 		</select><label id="errorTypeMessage"  style="padding-left: 30px;color: red;"></label>
 		</div>

@@ -3,9 +3,7 @@
     @parent
 @endsection
 @section('content')
-<style>
-
-</style>
+<link href="{{URL::asset('web/css/comment.css')}}" rel="stylesheet">
   <main>
     <h2 class="place">您现在的位置是：<a href='http://localhost/'>主页</a> > <a href='/seo/'>{{$data->title}}</a></h2>
     <div class="infosbox">
@@ -45,32 +43,27 @@
         <h2>文章评论</h2>
         <div class="gbko"><!-- //主模板必须要引入/include/dedeajax2.js -->
 <a name='postform'></a>
+
+<!-- //评论表单区结束 --> 
 <div class="mt1">
   <dl class="tbox">
     <dd>
       <div class="dede_comment_post">
         <form action="#" method="post" name="feedback">
-          <input type="hidden" name="dopost" value="send" />
-          <input type="hidden" name="comtype" value="comments">
+          <input type="hidden" name="dopost" id="id" value="{{$data->id}}" />
+          <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
           <input type="hidden" name="aid" value="196" />
           <input type="hidden" name="fid" id='feedbackfid' value="0" />
           <div class="clr"></div>
           <div class="dcmp-content">
-            <textarea cols="60" name="msg" rows="5" class="ipt-txt"></textarea>
+            <textarea cols="60" name="msg" id="msg" rows="5" class="ipt-txt"></textarea>
           </div>
           <!-- /dcmp-content -->
           <div class="dcmp-post"><!--未登陆-->
-            <div class="dcmp-userinfo" id="_ajax_feedback">
-              <label class="yzm"/>验证码: </label>
-              <input type="text" name="validate" size="4" class="ipt-txt" style="text-transform:uppercase;"/>
-             <img src="/p_captcha" onclick="this.src='/p_captcha?'+Math.random();" class="l21"/>
-              <label class="yzm"/>用户名: </label> <input type="text" name="notuser" class="l21" />
-            <label class="yzm"/>邮箱: </label> <input type="text" name="notuser" class="l21" />
-              </label>
-            </div>
+
             
             <div class="dcmp-submit">
-              <button type="button" onClick='PostComment()' id="imageField">发表评论</button>
+              <button type="button"  id="imageField">发表评论</button>
               <p class="comment-sm">注：网友评论仅供其表达个人看法，并不代表本站立场。</p>
             </div>
           </div>
@@ -79,124 +72,308 @@
     </dd>
   </dl>
 </div>
-<!-- //评论表单区结束 --> 
-
 <!-- //评论内容区 --> 
-
-<div class="mt1">
-  <dl class="tboxs">
-    <!-- //这两个ID的区块必须存在，否则JS会出错 -->
-    <dd id='commetcontentNew'><label>#1楼</label><span class="comment_date">2020-04-19 21:59</span>test</dd>
-    <dd id='commetcontent'>sdfsdfsdfsd</dd>
+<div class="ui threaded comments secondary segment" id="commentsContainer">
+        <div class="ui inverted dimmer comments-loader">
+        <div class="ui text loader">加载中</div>
+    </div>
     
-  </dl>
-</div>
-<div class="comment_vote">
+    
+        <div class="comments-wrap">
+            <h3 id="comments" class="ui header">评论(<span>12</span>)</h3>
+            <!-- 一级回复 -->
+            @foreach($comment as $key => $value)
+            <div class="comment" name="rpl_318532729" id="rpl_318532729" >
+               <a class="ui circular image avatar" href="https://my.oschina.net/u/127025" target="_blank">
+               <div class="osc-avatar small-portrait _35x35" title="yong230">
+                  <img src="https://static.oschina.net/uploads/user/63/127025_50.jpg?t=1483884846000" alt="yong230" title="yong230">
+               </div>
+              </a>
+            <div class="content">
+                 <a class="author" href="https://my.oschina.net/u/127025" target="_blank">yong230</a>
+                <div class="metadata">
+                    <span class="date">{{date('Y-m-d',$value->create_at)}}</span>
+                </div>
+                <div class="text" data-emoji-render="">{{$value->content}}</div>
+                <div class="actions" id="reply_msg_{{$value->id}}">
+                 <input type="hidden" name="aid" id="get_reply_id" value="" />
+                  <a class="reply"   onclick="reply_msg({{$value->id}})">回复</a>
+                 
+                </div>
+             </div>
+            <div class="comments" >
+                  <div class="comment" name="rpl_318507472" id="rpl_318507472" >
+                   <a class="ui circular image avatar" href="#" target="_blank">
+                   <div class="osc-avatar small-portrait _35x35" title="冰力" >
+                      <img src="https://static.oschina.net/uploads/user/59/118197_50.JPG?t=1402367476000" alt="冰力" title="冰力">
+                   </div>
+                   </a>
+                    <div class="content"><a class="author" href="#" target="_blank">冰力</a>
+                     <span class="osc-author-label">博主</span>
+                     <div class="metadata"> <span class="date">06/19 11:29</span> </div>
+                     <div class="text" data-emoji-render="">这个后面可以看看怎样设计更巧妙。</div>
+                  <div class="actions">
+                 <a class="reply"><i class="comment outline icon"></i> 回复 </a>
+                   </div>
+                   </div>
 
+                </div>
+         </div>
+             
+           </div>
+           @endforeach
+           <!-- 无限极回复 -->
+           <div class="comment" name="rpl_318506498" id="rpl_318506498" >
+            <a class="ui circular image avatar" href="#" target="_blank">
+            <div class="osc-avatar small-portrait _35x35" title="段体华" >
+                <img src="https://static.oschina.net/uploads/user/35/71180_50.jpg?t=1401428037000" alt="段体华" >
+            </div>
+            </a>
+            <div class="content">
+                <a class="author" href="https://my.oschina.net/chaostone" target="_blank">段体华</a>
+                 <div class="metadata">
+                    <span class="date">06/19 10:08</span>
+                </div>
+                <div class="text" data-emoji-render="">全局prefix有些粗，是否可以引入一些NamePolicy之类的东东，可以扩展表前缀甚至schema？</div>
+                <div class="actions">
+                    <a class="reply"> <i class="comment outline icon"></i> 回复 </a>
+                    <a class="ban"><i class="ban icon"></i> 举报</a>
+                </div>
+            </div>
+            
+            <div class="comments" >
+                  <div class="comment" name="rpl_318507472" id="rpl_318507472" >
+                   <a class="ui circular image avatar" href="#" target="_blank">
+                   <div class="osc-avatar small-portrait _35x35" title="冰力" >
+                      <img src="https://static.oschina.net/uploads/user/59/118197_50.JPG?t=1402367476000" alt="冰力" title="冰力">
+                   </div>
+                </a>
+                    <div class="content">
+                            <a class="author" href="#" target="_blank">冰力</a>
+                           <span class="osc-author-label">博主</span>
+                           <div class="metadata"> <span class="date">06/19 11:29</span> </div>
+                           <div class="text" data-emoji-render="">这个后面可以看看怎样设计更巧妙。</div>
+                           <div class="actions">
+                                    <a class="reply"><i class="comment outline icon"></i> 回复 </a>
+                           </div>
+                   </div>
+                  <div class="comments" children-comments="">
+                   <div class="comment" name="rpl_318562585" id="rpl_318562585" >
+                        <a class="ui circular image avatar" href="#" target="_blank">
+                            <div class="osc-avatar small-portrait _35x35 current-user-avatar" title="zb78354233" >
+                           <span class="text-portrait" style="background: #bdc3c7">z</span>
+                           </div>
+                        </a>
+                <div class="content">
+                      <a class="author" href="#" target="_blank">zb78354233</a>
+                <div class="metadata">
+                     <span class="date">刚刚</span>
+                </div>
+                <div class="text" data-emoji-render=""> 点赞</div>
+                <div class="actions">
+                     <a class="reply"><i class="comment outline icon"></i> 回复 </a>
+                     
+                </div>
+            </div>
+                <div class="comments" children-comments="">
+                   <div class="comment" name="rpl_318562585" id="rpl_318562585" >
+                      <a class="ui circular image avatar" href="#" target="_blank">
+                          <div class="osc-avatar small-portrait _35x35 current-user-avatar" title="zb78354233" ><span class="text-portrait" style="background: #bdc3c7">z</span> </div>
+                      </a>
+               <div class="content">
+                <a class="author" href="#" target="_blank">zb78354233</a>
+                <div class="metadata"> <span class="date">刚刚</span></div>
+                <div class="text" data-emoji-render="">点赞 </div>
+                <div class="actions">
+                      <a class="reply"><i class="comment outline icon"></i> 回复</a>
+                      
+                </div>
+             </div>
+           </div>
+           </div>
         </div>
+      </div>
+     </div>
+    </div>
+  </div>
+            <div class="comment" name="rpl_318532729" id="rpl_318532729" >
+               <a class="ui circular image avatar" href="https://my.oschina.net/u/127025" target="_blank">
+               <div class="osc-avatar small-portrait _35x35" title="yong230">
+                      <img src="https://static.oschina.net/uploads/user/63/127025_50.jpg?t=1483884846000" alt="yong230" title="yong230">
+               </div>
+              </a>
+            <div class="content">
+                 <a class="author" href="https://my.oschina.net/u/127025" target="_blank">yong230</a>
+                <div class="metadata">
+                    <span class="date">前天 22:34</span>
+                </div>
+                <div class="text" data-emoji-render=""> 跟springmvc好像啊</div>
+                <div class="actions">
+                  <a class="reply"><i class="comment outline icon"></i> 回复</a>
+                      <a class="ban" ban-report="" data-id="318532729" data-obj-type="12" data-url="https://my.oschina.net/jiaqing/blog/4315707#rpl_318532729">
+                        <i class="ban icon"></i> 举报
+                   </a>
+                </div>
+             </div>
+           </div>
+                       <div class="comment" name="rpl_318532729" id="rpl_318532729" >
+               <a class="ui circular image avatar" href="https://my.oschina.net/u/127025" target="_blank">
+               <div class="osc-avatar small-portrait _35x35" title="yong230">
+                      <img src="https://static.oschina.net/uploads/user/63/127025_50.jpg?t=1483884846000" alt="yong230" title="yong230">
+               </div>
+              </a>
+            <div class="content">
+                 <a class="author" href="https://my.oschina.net/u/127025" target="_blank">yong230</a>
+                <div class="metadata">
+                    <span class="date">前天 22:34</span>
+                </div>
+                <div class="text" data-emoji-render=""> 跟springmvc好像啊</div>
+                <div class="actions">
+                  <a class="reply"><i class="comment outline icon"></i> 回复</a>
+                      <a class="ban" ban-report="" data-id="318532729" data-obj-type="12" data-url="https://my.oschina.net/jiaqing/blog/4315707#rpl_318532729">
+                        <i class="ban icon"></i> 举报
+                   </a>
+                </div>
+             </div>
+           </div>
 
-<div class="mt1">
-  <dl class="tbox">
-    <!-- //这两个ID的区块必须存在，否则JS会出错 -->
-    <dd id='commetcontentNew'>test</dd>
-    <dd id='commetcontent'>sdfsdfsdfsd</dd>
-  </dl>
-</div>
+    </div>
 
-<div class="mt1">
-  <dl class="tbox">
-    <!-- //这两个ID的区块必须存在，否则JS会出错 -->
-    <dd id='commetcontentNew'>test</dd>
-    <dd id='commetcontent'>sdfsdfsdfsd</dd>
-  </dl>
-</div>
-<!--
-//由于评论载入时使用异步传输，因此必须在最后一步加载（DIGG和评论框须放在评论内容前面）
-//如果一定需要提前的把myajax.SendGet改为myajax.SendGet2，但可能会引起页面阻滞
---> 
-<script language='javascript'>
-function LoadCommets(page)
-{
-		var taget_obj = document.getElementById('commetcontent');
-		var waithtml = "<div style='line-height:50px'><img src='/images/loadinglit.gif' />评论加载中...</div>";
-		var myajax = new DedeAjax(taget_obj, true, true, '', 'x', waithtml);
-		myajax.SendGet2("/plus/feedback_ajax.php?dopost=getlist&aid=196&page="+page);
-		DedeXHTTP = null;
+ <script type="text/javascript">
+ function reply_msg(id){
+	 let dede_comment_post = document.getElementById("dede_comment_post");
+	 let q_id = id;
+ 	 
+ 	 let reply_msg = document.getElementById("reply_msg_"+q_id);
+
+ 	 
+ 	
+	 if(dede_comment_post == null){
+		 document.getElementById("get_reply_id").value = q_id;
+		 
+	 	 let div1 = document.createElement("div");
+	 	 let form = document.createElement("form");
+	 	 form.setAttribute("action","#");
+	 	 form.setAttribute("method","post");
+	 	 form.setAttribute("name","feedback");
+	 	 div1.appendChild(form);
+	 	 let input1 = document.createElement("input");
+	 	 input1.setAttribute("type","hidden");
+	 	 input1.setAttribute("name","comment_id");
+	 	 input1.setAttribute("id","comment_id");
+	 	 input1.setAttribute("value",id);
+	 	 form.appendChild(input1);
+	 	let input2 = document.createElement("input");
+	 	 input2.setAttribute("type","hidden");
+	 	 input2.setAttribute("name","_token");
+	 	 input2.setAttribute("id","_token");
+	 	 input2.setAttribute("value","{{csrf_token()}}");
+	 	 form.appendChild(input2);
+
+	 	 
+	 	 let div2 = document.createElement("div");
+	 	 div2.setAttribute("class","clr");
+	 	 form.appendChild(div2);
+	 	 let div3 = document.createElement("div");
+	 	 div3.setAttribute("class","dcmp-content");
+	 	 let textarea = document.createElement("textarea");
+	 	 textarea.setAttribute("cols","60");
+	 	 textarea.setAttribute("name","msg");
+	 	 textarea.setAttribute("id","reply_msg");
+	 	 textarea.setAttribute("rows","5");
+	 	 textarea.setAttribute("class","ipt-txt");
+	 	 div3.appendChild(textarea);
+	 	 form.appendChild(div3);
+	 	 
+	 	 let div4 = document.createElement("div");
+	 	 div4.setAttribute("class","dcmp-post");
+	   	form.appendChild(div4);
+	    let div5 = document.createElement("div");
+	    div5.setAttribute("class","dcmp-submit");
+	    div4.appendChild(div5);
+	    let button = document.createElement("button");
+	    button.setAttribute("type","button");
+	    button.setAttribute("onclick","reply_submit()");
+	    let mz = document.createTextNode("发表评论");
+	    button.appendChild(mz);
+	    div5.appendChild(button);
+
+	    
+	    let p = document.createElement("p");
+	    p.setAttribute("class","comment-sm");
+	    let sm = document.createTextNode("注：网友评论仅供其表达个人看法，并不代表本站立场。");
+	    p.appendChild(sm);
+	    div5.appendChild(p);
+	 	 div1.setAttribute("class","dede_comment_post");
+	 	 div1.setAttribute("id","dede_comment_post");
+	 	  reply_msg.appendChild(div1);
+		 }else{
+			 let get_id = document.getElementById("get_reply_id").value;
+			 let reply_remove = document.getElementById("reply_msg_"+get_id);
+			 reply_remove.removeChild(dede_comment_post);
+
+			 document.getElementById("get_reply_id").value = q_id;
+			 
+		 	 let div1 = document.createElement("div");
+		 	 let form = document.createElement("form");
+		 	 form.setAttribute("action","#");
+		 	 form.setAttribute("method","post");
+		 	 form.setAttribute("name","feedback");
+		 	 div1.appendChild(form);
+		 	 let input1 = document.createElement("input");
+		 	 input1.setAttribute("type","hidden");
+		 	 input1.setAttribute("name","comment_id");
+		 	 input1.setAttribute("id","comment_id");
+		 	 input1.setAttribute("value",id);
+		 	 form.appendChild(input1);
+		 	 let div2 = document.createElement("div");
+		 	 div2.setAttribute("class","clr");
+		 	 form.appendChild(div2);
+		 	 let div3 = document.createElement("div");
+		 	 div3.setAttribute("class","dcmp-content");
+		 	 let textarea = document.createElement("textarea");
+		 	 textarea.setAttribute("cols","60");
+		 	 textarea.setAttribute("name","msg");
+		 	 textarea.setAttribute("id","reply_msg");
+		 	 textarea.setAttribute("rows","5");
+		 	 textarea.setAttribute("class","ipt-txt");
+		 	 div3.appendChild(textarea);
+		 	 form.appendChild(div3);
+		 	 
+		 	 let div4 = document.createElement("div");
+		 	 div4.setAttribute("class","dcmp-post");
+		   	form.appendChild(div4);
+		    let div5 = document.createElement("div");
+		    div5.setAttribute("class","dcmp-submit");
+		    div4.appendChild(div5);
+		    let button = document.createElement("button");
+		    button.setAttribute("type","button");
+		    button.setAttribute("onclick","reply_submit()");
+		    let mz = document.createTextNode("发表评论");
+		    button.appendChild(mz);
+		    div5.appendChild(button);
+
+		    
+		    let p = document.createElement("p");
+		    p.setAttribute("class","comment-sm");
+		    let sm = document.createTextNode("注：网友评论仅供其表达个人看法，并不代表本站立场。");
+		    p.appendChild(sm);
+		    div5.appendChild(p);
+		 	 div1.setAttribute("class","dede_comment_post");
+		 	 div1.setAttribute("id","dede_comment_post");
+		 	  reply_msg.appendChild(div1);
+			 
+			 }
+
 }
 
-function PostComment()
-{
-		var f = document.feedback;
-		var nface = '6';
-		var nfeedbacktype = 'feedback';
-		var nvalidate = '';
-		var nnotuser = '';
-		var nusername = '';
-		var npwd = '';
-		var taget_obj = $DE('commetcontentNew');
-		var waithtml = "<div style='line-height:30px'><img src='/images/loadinglit.gif' />正在发送中...</div>";
-		if(f.msg.value=='')
-		{
-			alert("评论内容不能为空！");
-			return;
-		}
-		if(f.validate)
-		{
-			if(f.validate.value=='') {
-				alert("请填写验证码！");
-				return;
-			}
-			else {
-				nvalidate = f.validate.value;
-			}
-		}
-		if(f.msg.value.length > 500)
-		{
-			alert("你的评论是不是太长了？请填写500字以内的评论。");
-			return;
-		}
-		if(f.feedbacktype) {
-			for(var i=0; i < f.feedbacktype.length; i++)
-				if(f.feedbacktype[i].checked) nfeedbacktype = f.feedbacktype[i].value;
-		}
-		if(f.face) {
-			for(var j=0; j < f.face.length; j++)
-				if(f.face[j].checked) nface = f.face[j].value;
-		}
-		if(f.notuser.checked) nnotuser = '1';
-		if(f.username) nusername = f.username.value;
-		if(f.pwd) npwd = f.pwd.value;
-		
-		var myajax = new DedeAjax(taget_obj, false, true, '', '', waithtml);
-		myajax.sendlang = 'utf-8';
-		myajax.AddKeyN('dopost', 'send');
-		myajax.AddKeyN('aid', '196');
-		myajax.AddKeyN('fid', f.fid.value);
-		myajax.AddKeyN('face', nface);
-		myajax.AddKeyN('feedbacktype', nfeedbacktype);
-		myajax.AddKeyN('validate', nvalidate);
-		myajax.AddKeyN('notuser', nnotuser);
-		myajax.AddKeyN('username', nusername);
-		myajax.AddKeyN('pwd', npwd);
-		myajax.AddKeyN('msg', f.msg.value);
-		myajax.SendPost2('/plus/feedback_ajax.php');
-		f.msg.value = '';
-		f.fid.value = 0;
-		if(f.validate)
-		{
-			if($DE('validateimg')) $DE('validateimg').src = "/include/vdimgck.php?"+f.validate.value;
-			f.validate.value = '';
-		}
-}
-function quoteCommet(fid)
-{
-	document.feedback.fid.value = fid;
-}
-LoadCommets(1);
-</script><!-- //评论内容区结束 --> 
+
+
+</script>
 </div>
       </div>
     </div>
   </main>
+
   @include('web.layouts.offside')
 @endsection

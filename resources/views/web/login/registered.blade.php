@@ -5,7 +5,7 @@
     <div class="reg_box">
        
             <div class="main_left">
-                <label style="font-size:7px;color:red;">提示:注册成功后需激活邮箱账户可以正常使用</label> 
+               
 
                 <div class="item_box">
                    
@@ -13,7 +13,7 @@
                 </div>
                <div class="item_box">
                    
-                    <div class="value"><input type="text" placeholder="请输入手机号码" title="请输入手机号码" name="account_number" id="account_number" class="txt" /><label id="Account_number_Message"></label></div>
+                    <div class="value"><input type="text" placeholder="请输入手机号码" title="请输入手机号码" name="phone_number" id="phone_number" class="txt" /><label id="Phone_Number_Message"></label></div>
                 </div>
                 <div class="item_box">
                    
@@ -24,7 +24,8 @@
                   
                     <div class="value">
                     <input id="verification" type="text" placeholder="请输入短信验证码" title="请输入短信验证码" name="verification" class="vfion" />
-                     <input type="button"  value="获取验证码"  class="get_vfion"/></div>
+                     <input type="button"  value="获取验证码" id="phone_required" class="get_vfion"/></div>
+                     <input type="hidden" id="msg_id" name="msg_id">
                 </div>
                 <div class="item_box_bux">
                     <div class="type_bux"></div>

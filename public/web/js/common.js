@@ -6,14 +6,7 @@ if(document.getElementById("register"))
 	document.getElementById("register").onclick=function()
 	{
 		
-		let account_number = document.getElementById("account_number").value;
-		if(account_number == ''){
-			document.getElementById("Account_number_Message").innerHTML = "*请填电子邮箱";
-			document.getElementById("Account_number_Message").style.color = "red";
-			return false;
-		}else{
-			document.getElementById("Account_number_Message").innerHTML = "";
-		}
+
 		let nickname = document.getElementById("nickname").value;
 		if(nickname == ''){
 			document.getElementById("Nickname_Message").innerHTML = "*请填写昵称";
@@ -21,6 +14,14 @@ if(document.getElementById("register"))
 			return false;
 		}else{
 			document.getElementById("Nickname_Message").innerHTML = "";
+		}
+		let phone_number = document.getElementById("phone_number").value;
+		if(phone_number == ''){
+			document.getElementById("Phone_Number_Message").innerHTML = "*请填手机号码";
+			document.getElementById("Phone_Number_Message").style.color = "red";
+			return false;
+		}else{
+			document.getElementById("Phone_Number_Message").innerHTML = "";
 		}
 		let password = document.getElementById("password").value;
 		if(password == ''){
@@ -30,21 +31,7 @@ if(document.getElementById("register"))
 		}else{
 			document.getElementById("Password_Message").innerHTML = "";
 		}
-		let confirm_password = document.getElementById("confirm_password").value;
-		if(confirm_password == ''){
-			document.getElementById("Confirm_Password_Message").innerHTML = "*请填写确认密码";
-			document.getElementById("Confirm_Password_Message").style.color = "red";
-			return false;
-		}else{
-			document.getElementById("Confirm_Password_Message").innerHTML = "";
-		}
-		if(password != confirm_password){
-			
-			document.getElementById("Confirm_Password_Message").innerHTML = "*密码填写不一致";
-			document.getElementById("Confirm_Password_Message").style.color = "red";
-		}else{
-			document.getElementById("Confirm_Password_Message").innerHTML = "";
-		}
+
 		let verification = document.getElementById("verification").value;
 		if(verification == ''){
 			document.getElementById("Verification_Message").innerHTML = "*请填写验证码";
@@ -109,7 +96,51 @@ if(document.getElementById("register"))
 		
 	}
 }
+if(document.getElementById("register")){
+     document.getElementById("phone_required").onclick=function(){
+	 var phone = document.getElementById("phone_number").value;
+	 let _token = document.getElementById('_token').value;	
+	 var  tel = /^[1][3,4,5,7,8][0-9]{9}$/;
+	 if(phone == ''){
+		document.getElementById("Phone_Number_Message").innerHTML = "*请填手机号码";
+		document.getElementById("Phone_Number_Message").style.color = "red"
+   	    document.getElementById("phone_number").focus();
+		return false;
+      }
+	  else
+	  {
+      	  if(!tel.test(phone)){
+      		  document.getElementById("Phone_Number_Message").innerHTML = "*手机号码输入有误";
+    		  document.getElementById("Phone_Number_Message").style.color = "red"
+      	      document.getElementById("phone_number").focus();
+      	      document.getElementById("phone_number").value="";
+      	      return false;
+      	  }
+      	 let formData = new FormData();
+		 formData.append("phone", phone);
+		 formData.append("_token", _token);
+	        httpHelper({
+	            type:'POST',
+	            async:'true',
+	            data:formData,
+	            url:'/verificationMessage',
+	            success:function(data){
+	            	 let json_data = JSON.parse(data);
+	            	 if(json_data.bool == 1){
+	            		 document.getElementById("msg_id").value=json_data.msg_id;
+	            	 }
+	            },
+	            error:function(){
+	            	let json_data = JSON.parse(err);
+	            	alert(err.message);
+	            	alert('失败');
+	            }
+	        });
 
+	//document.getElementById("L30").style.backgroundColor="#ccc";
+   }
+  }
+ }
 if(document.getElementById("mailbox_code"))
 {
 	document.getElementById("mailbox_code").onclick=function()
@@ -138,6 +169,70 @@ if(document.getElementById("mailbox_code"))
         });
 	 
 	}
+}
+if(document.getElementById("imageField"))
+{
+	document.getElementById("imageField").onclick=function()
+	{
+		
+	  let id = document.getElementById('id').value;	
+	  let msg = document.getElementById('msg').value;	
+	  let _token = document.getElementById('_token').value;	
+		 let formData = new FormData();
+		 formData.append("topic_id", id);
+		 formData.append("content", msg);
+		 formData.append("_token", _token);
+	        httpHelper({
+            type:'POST',
+            async:'true',
+            data:formData,
+            url:'/CommitPost',
+            success:function(data){
+            	 let json_data = JSON.parse(data);
+            	 if(json_data.bool == true){
+            		 history.go(0);
+            	 }
+            },
+            error:function(){
+            	let json_data = JSON.parse(err);
+            	alert(err.message);
+            	alert('失败');
+            }
+        });
+	 
+	}
+}
+
+function reply_submit(){
+	
+	  let comment_id = document.getElementById('id').value;	
+	  let from_uid = 5;
+	  let to_uid = 1;
+	  let content = document.getElementById('reply_msg').value;	
+	  let _token = document.getElementById('_token').value;	
+		 let formData = new FormData();
+		 formData.append("comment_id", comment_id);
+		 formData.append("from_uid", from_uid);
+		 formData.append("to_uid", to_uid);
+		 formData.append("content", content);
+		 formData.append("_token", _token);
+	        httpHelper({
+            type:'POST',
+            async:'true',
+            data:formData,
+            url:'/ReplyPost',
+            success:function(data){
+            	 let json_data = JSON.parse(data);
+            	 if(json_data.bool == true){
+            		 history.go(0);
+            	 }
+            },
+            error:function(){
+            	let json_data = JSON.parse(err);
+            	alert(err.message);
+            	alert('失败');
+            }
+        });
 }
 
 function httpHelper(params) {
