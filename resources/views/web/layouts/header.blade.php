@@ -32,11 +32,11 @@
   </div>
   <div class="header-navigation">
     <nav>
-      <div class="logo"><a href="/">PHP中文网</a></div>
+      <div class="logo"><a href="/">林林博客</a></div>
       <h2 id="mnavh"><span class="navicon"></span></h2>
       <ul id="starlist">
        <li class="selected"><a href="/" >PHP发布</a> </li>
-       <li ><a href="/shizhananli/" id="">PHP应用</a></li>
+       <li ><a href="{{route('p_index')}}" id="">PHP应用</a></li>
        <li class="menu"><a href="{{route('n_index')}}" id="">业界资讯</a>
             <ul class="sub">
               <li><a href="/seojiaocheng/">编程语言资讯</a></li>

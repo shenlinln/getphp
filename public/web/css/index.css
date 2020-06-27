@@ -102,7 +102,7 @@
 .links li { width: 47% !important; float: left; border: 1px solid #ddd; line-height: 30px; text-align: center; margin: 3px }
 /*about*/
 .aboutbox { margin-bottom: 15px; }
-.place { background: url(../images/dw.png) no-repeat left 5px center #FFF; font-size: 14px; font-weight: normal; border: #ddd 1px solid; line-height: 38px; padding-left: 30px; margin-bottom: 10px }
+.place { background: url(/web/images/dw.png) no-repeat left 5px center #FFF; font-size: 14px; font-weight: normal; border: #ddd 1px solid; line-height: 38px; padding-left: 30px; margin-bottom: 10px }
 .abinfos { background: #FFF; padding: 20px; border: #ddd 1px solid; }
 .abinfos h3 { font-size: 18px; padding: 0 0 10px }
 .abinfos p { margin: 0 0 10px }

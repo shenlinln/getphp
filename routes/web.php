@@ -24,7 +24,7 @@ Route::post('mailbox_code',"LoginController@Mailbox_Code");
 
 
 Route::get('/',"IndexController@index");
-Route::get('detail/{id}.html',"IndexController@detail")->where(['id' => '[0-9]+'])->name('i_detail');;//首页内页内容
+Route::get('detail/{id}.html',"IndexController@detail")->where(['id' => '[0-9]+'])->name('i_detail');//首页内页内容
 Route::post('CommitPost',"IndexController@CommitPost");//评论提交
 Route::post('ReplyPost',"IndexController@ReplyPost");
 
@@ -33,7 +33,8 @@ Route::get('news_detail/{id}.html',"NewsController@Detail")->where(['id' => '[0-
 
 
 
-
+Route::get('php_index',"ApplicationController@Index")->name('p_index');//php应用首页
+Route::get('php_detail/{id}.html',"ApplicationController@Detail")->where(['id' => '[0-9]+'])->name('p_detail');//php应用首页
 Route::get('news_index',"NewsController@News_Index")->name('n_index');//资讯首页
 Route::get('captcha',"NewsController@captcha");//新闻发布验证码
 Route::get('Server',"WSController@Server");

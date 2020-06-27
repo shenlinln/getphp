@@ -95,31 +95,35 @@
                     <span class="date">{{date('Y-m-d',$value->create_at)}}</span>
                 </div>
                 <div class="text" data-emoji-render="">{{$value->content}}</div>
-                <div class="actions" id="reply_msg_{{$value->id}}">
+                <div class="actions" id="reply_msg_{{$value->create_at}}">
                  <input type="hidden" name="aid" id="get_reply_id" value="" />
-                  <a class="reply"   onclick="reply_msg({{$value->id}})">回复</a>
+                  <a class="reply"   onclick="reply_msg({{$value->create_at}})">回复</a>
                  
                 </div>
              </div>
-            <div class="comments" >
-                  <div class="comment" name="rpl_318507472" id="rpl_318507472" >
-                   <a class="ui circular image avatar" href="#" target="_blank">
-                   <div class="osc-avatar small-portrait _35x35" title="冰力" >
-                      <img src="https://static.oschina.net/uploads/user/59/118197_50.JPG?t=1402367476000" alt="冰力" title="冰力">
-                   </div>
-                   </a>
-                    <div class="content"><a class="author" href="#" target="_blank">冰力</a>
-                     <span class="osc-author-label">博主</span>
-                     <div class="metadata"> <span class="date">06/19 11:29</span> </div>
-                     <div class="text" data-emoji-render="">这个后面可以看看怎样设计更巧妙。</div>
-                  <div class="actions">
-                 <a class="reply"><i class="comment outline icon"></i> 回复 </a>
-                   </div>
-                   </div>
+             @foreach($reply as $r_key => $r_value)
+               @if($value->id == $r_value->comment_id)
+                <div class="comments" >
+                     <div class="comment" name="rpl_318507472" id="rpl_318507472" >
+                       <a class="ui circular image avatar" href="#" target="_blank">
+                         <div class="osc-avatar small-portrait _35x35" title="冰力" >
+                            <img src="https://static.oschina.net/uploads/user/59/118197_50.JPG?t=1402367476000" alt="冰力" title="冰力">
+                          </div>
+                      </a>
+                      <div class="content"><a class="author" href="#" target="_blank">冰力</a>
+                         <span class="osc-author-label">博主</span>
+                      <div class="metadata"> <span class="date">{{date('Y-m-d',$r_value->create_at)}}</span> </div>
+                      <div class="text" data-emoji-render="">{{$r_value->content}}</div>
+                      <div class="actions" id="reply_msg_{{$r_value->create_at}}">
+                           <input type="hidden" name="aid" id="get_reply_id" value="" />
+                          <a class="reply" onclick="reply_msg({{$r_value->create_at}})">回复 </a>
 
-                </div>
-         </div>
-             
+                      </div>
+                     </div>
+                   </div>
+               </div>
+            @endif
+          @endforeach   
            </div>
            @endforeach
            <!-- 无限极回复 -->
