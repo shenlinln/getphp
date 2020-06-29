@@ -11,8 +11,9 @@ class IndexController extends Controller
 {
     protected  object $model_comment;
     protected  object $model_reply;
-    
-    protected $factory;
+    protected  object $model_common;
+   
+    protected  object  $factory;
     protected  function setClass($class){
         $this->factory = new ConcreteFactory();
         $data = $this->factory->createVehicle($class);
@@ -36,11 +37,17 @@ class IndexController extends Controller
         $releast = $this->setClass('release');
         $data = $releast->web_release_detail($id);
         $this->model_comment = $this->setClass('comment');
+        
         $comment = $this->model_comment->query_comment();
+        $this->model_common = $this->setClass('common');
+        
         $this->model_reply = $this->setClass('reply');
         $reply = $this->model_reply->query_reply();
        
-        return view('web.index.detail',compact('data','release_read_count','comment','reply'));
+        $arr_data = [];
+        $arr_data = $this->model_common->recursion($reply, 0, 0);
+       
+        return view('web.index.detail',compact('data','release_read_count','comment','reply','arr_data'));
     }
     
     public function CommitPost(Request $request){
@@ -64,7 +71,7 @@ class IndexController extends Controller
     public function ReplyPost(Request $request){
         
         $data = $request->except('_token');
-        
+       
         $this->model_reply =  $this->setClass('reply');
         try {
             $result = $this->model_reply->addReply($data);

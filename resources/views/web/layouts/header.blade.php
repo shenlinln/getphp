@@ -35,24 +35,24 @@
       <div class="logo"><a href="/">林林博客</a></div>
       <h2 id="mnavh"><span class="navicon"></span></h2>
       <ul id="starlist">
-       <li class="selected"><a href="/" >PHP发布</a> </li>
-       <li ><a href="{{route('p_index')}}" id="">PHP应用</a></li>
+       <li class="selected"><a href="/" target="_blank">PHP发布</a> </li>
+       <li ><a href="{{route('p_index')}}" id="" target="_blank">PHP应用</a></li>
        <li class="menu"><a href="{{route('n_index')}}" id="">业界资讯</a>
             <ul class="sub">
-              <li><a href="/seojiaocheng/">编程语言资讯</a></li>
-              <li><a href="/wangzhanyouhua/">行业资讯</a></li>
-              <li><a href="/SEOzixun/">综合资讯</a></li>
+              <li><a href="#">编程语言资讯</a></li>
+              <li><a href="#">行业资讯</a></li>
+              <li><a href="#">综合资讯</a></li>
              </ul>
           </li>
-      <li class="menu"><a href="{{route('n_index')}}" id="">相关技术</a>
+      <li class="menu"><a href="{{route('n_index')}}" target="_blank" id="">相关技术</a>
             <ul class="sub">
-              <li><a href="/seojiaocheng/">MySQL</a></li>
-              <li><a href="/wangzhanyouhua/">Nginx</a></li>
-              <li><a href="/SEOzixun/">Linux</a></li>
+              <li><a href="#">MySQL</a></li>
+              <li><a href="#">Nginx</a></li>
+              <li><a href="#">Linux</a></li>
              </ul>
           </li>
         
-          <li ><a href="https://www.php.net/" id="">PHP官网</a>
+          <li ><a href="https://www.php.net/" target="_blank" id="">PHP官网</a>
             <ul style="display:none">
               
             </ul>
@@ -77,19 +77,19 @@
   <div class="footer">
     <div class="wxbox">
       <ul>
-        <li><img src="/style/images/grwx.png"><span>我的微信</span></li>
-        <li><img src="/style/images/wx.jpg"><span>微信公众号</span></li>
+        <li><span></span></li>
+        <li><span></span></li>
       </ul>
     </div>
     <div class="bzjj">
       <h2>本站简介</h2>
-      <p>叶婷个人博客，是一个站在web前端设计之路的程序员个人网站，提供个人博客模板免费资源下载的个人原创网站。</p>
+      <p>林林个人博客，是一个站在PHP服务端之路的程序员个人网站。</p>
     </div>
     <div class="other">
       <h2>网站版权</h2>
       <p>未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：3296364496@qq.com</p>
       <p>&nbsp;</p>
-      <p>备案号：皖ICP12345678 </p>
+      <p>苏ICP备 20039179</p>
     </div>
   </div>
 </footer>

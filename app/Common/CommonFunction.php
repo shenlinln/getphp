@@ -23,26 +23,7 @@ class CommonFunction{
         return ['0' => '通过','1' => '待审核','2' => '不通过'];
         
     }
-    /**
-     * 中医养生分类
-     * @return string[]
-     */
-    public function zy_health_maintenance_type()
-    {
-        return ['1' => '部位养生','2' => '膳食养生','3' => '运动养生','4' => '顺时养生','5' => '药物养生','6' => '情志养生','7' => '气功养生','8' => '经络养生'];
-        
-        
-    }
-    /**
-     * 中医文化分类
-     * @return string[]
-     */
-    public function zy_culture_type()
-    {
-        return ['1' => '中医基础','2' => '中医通史','3' => '医药典故','4' => '民族医药','5' => '中医诊断'];
-        
-        
-    }
+
     /**
        * 获得随机字符串
      * @param $len             
@@ -70,6 +51,19 @@ class CommonFunction{
             $str .= substr($chars, mt_rand(0, strlen($chars) - 1), 1);
         }
         return $str;
+    }
+    //递归循环
+    function recursion($arr,$id,$level)
+    {
+        $list = [];
+        foreach ($arr as $k=>$v){
+            if ($v->parent_id == $id){
+                $v['level']=$level;
+                $v['son'] = $this->recursion($arr,$v->id,$level+1);
+                $list[] = $v;
+            }
+        }
+        return $list;
     }
     
 }

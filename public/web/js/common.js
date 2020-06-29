@@ -96,6 +96,58 @@ if(document.getElementById("register"))
 		
 	}
 }
+if(document.getElementById("submit")){
+     document.getElementById("submit").onclick=function(){
+	 let user_name = document.getElementById("user_name").value;
+		if(user_name == ''){
+			document.getElementById("Nickname_Message").innerHTML = "*请填写昵称";
+			document.getElementById("Nickname_Message").style.color = "red";
+			return false;
+		}else{
+			document.getElementById("Nickname_Message").innerHTML = "";
+		}
+		let pass_word = document.getElementById("pass_word").value;
+		if(pass_word == ''){
+			document.getElementById("Password_Message").innerHTML = "*请填写密码";
+			document.getElementById("Password_Message").style.color = "red";
+			return false;
+		}else{
+			document.getElementById("Password_Message").innerHTML = "";
+		}
+	   let code = document.getElementById("code").value;
+		if(code == ''){
+			document.getElementById("Code_Message").innerHTML = "*请填写验证码";
+			document.getElementById("Code_Message").style.color = "red";
+			return false;
+		}else{
+			document.getElementById("Code_Message").innerHTML = "";
+		}
+	 let _token = document.getElementById('_token').value;	
+      	 let formData = new FormData();
+		 formData.append("nickname", user_name);
+	     formData.append("password", pass_word);
+         formData.append("code", code);
+		 formData.append("_token", _token);
+	        httpHelper({
+	            type:'POST',
+	            async:'true',
+	            data:formData,
+	            url:'/login',
+	            success:function(data){
+	            	 let json_data = JSON.parse(data);
+	            	 
+	            },
+	            error:function(){
+	            	let json_data = JSON.parse(err);
+	            	alert(err.message);
+	            	alert('失败');
+	            }
+	        });
+
+	//document.getElementById("L30").style.backgroundColor="#ccc";
+   }
+  }
+ 
 if(document.getElementById("register")){
      document.getElementById("phone_required").onclick=function(){
 	 var phone = document.getElementById("phone_number").value;
@@ -209,12 +261,14 @@ function reply_submit(){
 	  let from_uid = 5;
 	  let to_uid = 1;
 	  let content = document.getElementById('reply_msg').value;	
+      let parent_id = document.getElementById('parent_id').value;
 	  let _token = document.getElementById('_token').value;	
-		 let formData = new FormData();
+	  let formData = new FormData();
 		 formData.append("comment_id", comment_id);
 		 formData.append("from_uid", from_uid);
 		 formData.append("to_uid", to_uid);
 		 formData.append("content", content);
+	     formData.append("parent_id", parent_id);
 		 formData.append("_token", _token);
 	        httpHelper({
             type:'POST',

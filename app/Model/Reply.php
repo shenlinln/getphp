@@ -10,7 +10,7 @@ class Reply extends Model
     public $timestamps = false;
     
     public function query_reply(){
-        $user_data = $this::select('id','comment_id','content','from_uid','create_at')->get();
+        $user_data = $this::select('id','comment_id','content','from_uid','create_at','parent_id')->get();
         return $user_data;
     }
     
@@ -38,6 +38,9 @@ class Reply extends Model
         }
         if(isset($request['to_uid']) && !empty($request['to_uid'])){
             $this->to_uid = intval($request['to_uid']);
+        }
+        if(isset($request['parent_id'])){
+            $this->parent_id = $request['parent_id'];
         }
         $this->create_at = time();
         $result =  $this->save();

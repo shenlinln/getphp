@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 //web前台
 Route::namespace('Web')->group(function () {
-Route::get('login',"LoginController@Login")->name('users_login');//login
+Route::match(['get','post'],'login',"LoginController@Login")->name('users_login');//login
 Route::get('captcha',"LoginController@captcha");//验证码
 Route::post('verificationMessage',"LoginController@verificationMessage");//短信验证码
 

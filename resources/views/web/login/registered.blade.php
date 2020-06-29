@@ -17,11 +17,9 @@
                 </div>
                 <div class="item_box">
                    
-                    <div class="value"><input type="password" placeholder="请输入密码，字母或特殊符号 + 数字" title="请输入密码，字母或特殊符号 + 数字"  name="password" id="password" class="txt" /><label id="Password_Message"></label></div>
+                    <div class="value"><input type="password" placeholder="请输入密码，字母或特殊符号 + 数字" title="请输入密码，字母或特殊符号 + 数字"  name="password" id="password" class="txt" /><label id="Code_Message"></label></div>
                 </div>
-
                 <div class="item_box">
-                  
                     <div class="value">
                     <input id="verification" type="text" placeholder="请输入短信验证码" title="请输入短信验证码" name="verification" class="vfion" />
                      <input type="button"  value="获取验证码" id="phone_required" class="get_vfion"/></div>

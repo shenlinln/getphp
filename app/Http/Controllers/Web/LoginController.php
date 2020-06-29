@@ -28,7 +28,11 @@ class LoginController extends Controller
     const  APPKEY = "01bc1da35c1959ff5525f0ad";
     const MASTERSECRET = "f3fed959cb7fbf31814b3e0f";
     public function Login(Request $request){
-       
+        if($request->isMethod('post')){
+            
+            var_dump($request->all());die();
+        }
+       // 
         return view('web.login.login');
     }
     public  function captcha(Request $request)

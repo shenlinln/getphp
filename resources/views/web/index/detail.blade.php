@@ -53,6 +53,7 @@
           <input type="hidden" name="dopost" id="id" value="{{$data->id}}" />
           <input type="hidden" name="_token" id="_token" value="{{csrf_token()}}">
           <input type="hidden" name="aid" value="196" />
+          <input type="hidden" name="parent_id" id="parent_id" />
           <input type="hidden" name="fid" id='feedbackfid' value="0" />
           <div class="clr"></div>
           <div class="dcmp-content">
@@ -60,8 +61,6 @@
           </div>
           <!-- /dcmp-content -->
           <div class="dcmp-post"><!--未登陆-->
-
-            
             <div class="dcmp-submit">
               <button type="button"  id="imageField">发表评论</button>
               <p class="comment-sm">注：网友评论仅供其表达个人看法，并不代表本站立场。</p>
@@ -77,32 +76,30 @@
         <div class="ui inverted dimmer comments-loader">
         <div class="ui text loader">加载中</div>
     </div>
-    
-    
         <div class="comments-wrap">
             <h3 id="comments" class="ui header">评论(<span>12</span>)</h3>
             <!-- 一级回复 -->
-            @foreach($comment as $key => $value)
+            @foreach($comment as $m_key => $m_value)
             <div class="comment" name="rpl_318532729" id="rpl_318532729" >
                <a class="ui circular image avatar" href="https://my.oschina.net/u/127025" target="_blank">
                <div class="osc-avatar small-portrait _35x35" title="yong230">
                   <img src="https://static.oschina.net/uploads/user/63/127025_50.jpg?t=1483884846000" alt="yong230" title="yong230">
                </div>
               </a>
-            <div class="content">
-                 <a class="author" href="https://my.oschina.net/u/127025" target="_blank">yong230</a>
-                <div class="metadata">
-                    <span class="date">{{date('Y-m-d',$value->create_at)}}</span>
-                </div>
-                <div class="text" data-emoji-render="">{{$value->content}}</div>
-                <div class="actions" id="reply_msg_{{$value->create_at}}">
-                 <input type="hidden" name="aid" id="get_reply_id" value="" />
-                  <a class="reply"   onclick="reply_msg({{$value->create_at}})">回复</a>
-                 
-                </div>
-             </div>
-             @foreach($reply as $r_key => $r_value)
-               @if($value->id == $r_value->comment_id)
+              <div class="content">
+                   <a class="author" href="https://my.oschina.net/u/127025" target="_blank">yong230</a>
+                   <div class="metadata">
+                     <span class="date">{{date('Y-m-d',$m_value->create_at)}}</span>
+                   </div>
+                   <div class="text" data-emoji-render="">{{$m_value->content}}</div>
+                   <div class="actions" id="reply_msg_{{$m_value->create_at}}">
+                      
+                      <input type="hidden" name="aid" id="get_reply_id" value="" />
+                      <a class="reply"   onclick="reply_msg({{$m_value->create_at}},0)">回复</a>
+                    </div>
+              </div>
+             @foreach($arr_data as $r_key => $r_value)
+               @if($m_value->id == $r_value->comment_id)
                 <div class="comments" >
                      <div class="comment" name="rpl_318507472" id="rpl_318507472" >
                        <a class="ui circular image avatar" href="#" target="_blank">
@@ -116,142 +113,65 @@
                       <div class="text" data-emoji-render="">{{$r_value->content}}</div>
                       <div class="actions" id="reply_msg_{{$r_value->create_at}}">
                            <input type="hidden" name="aid" id="get_reply_id" value="" />
-                          <a class="reply" onclick="reply_msg({{$r_value->create_at}})">回复 </a>
-
+                          <a class="reply" onclick="reply_msg({{$r_value->create_at}},{{$r_value->id}})">回复 </a>
                       </div>
                      </div>
-                   </div>
+                    @foreach($arr_data[$r_key]['son'] as $key => $value)
+                      <div class="comments" children-comments="">
+                      <div class="comment" name="rpl_318562585" id="rpl_318562585" >
+                        <a class="ui circular image avatar" href="#" target="_blank">
+                            <div class="osc-avatar small-portrait _35x35 current-user-avatar" title="zb78354233" >
+                            <span class="text-portrait" style="background: #bdc3c7">z</span>
+                           </div>
+                        </a>
+                         <div class="content">
+                           <a class="author" href="#" target="_blank">zb78354233</a>
+                           <div class="metadata"><span class="date">{{date('Y-m-d',$value->create_at)}}</span></div>
+                           <div class="text" data-emoji-render="">{{$value->content}}</div>
+                           <div class="actions" id="reply_msg_{{$value->create_at}}">
+                             <input type="hidden" name="aid" id="get_reply_id" value="" />
+                             <a class="reply" onclick="reply_msg({{$value->create_at}},{{$value->id}})">回复 </a>
+                           </div>
+                         </div>
+                       @foreach ($value['son'] as $u => $t)
+                         <div class="comments" children-comments="">
+                         <div class="comment" name="rpl_318562585" id="rpl_318562585" >
+                         <a class="ui circular image avatar" href="#" target="_blank">
+                            <div class="osc-avatar small-portrait _35x35 current-user-avatar" title="zb78354233" ><span class="text-portrait" style="background: #bdc3c7">z</span> </div>
+                         </a>
+                         <div class="content">
+                           <a class="author" href="#" target="_blank">zb78354233</a>
+                          <div class="metadata"> <span class="date">{{date('Y-m-d',$t->create_at)}}</span></div>
+                          <div class="text" data-emoji-render="">{{$t->content}} </div>
+                          <div class="actions" id="reply_msg_{{$t->create_at}}">
+                           <input type="hidden" name="aid" id="get_reply_id" value="" />
+                           <a class="reply" onclick="reply_msg({{$t->create_at}},{{$t->id}})"></a>
+                          </div>
+                       </div>
+                       </div>
+                       </div>
+                     @endforeach
+                  </div>
+                  </div>
+                @endforeach
+               </div>
                </div>
             @endif
           @endforeach   
            </div>
-           @endforeach
-           <!-- 无限极回复 -->
-           <div class="comment" name="rpl_318506498" id="rpl_318506498" >
-            <a class="ui circular image avatar" href="#" target="_blank">
-            <div class="osc-avatar small-portrait _35x35" title="段体华" >
-                <img src="https://static.oschina.net/uploads/user/35/71180_50.jpg?t=1401428037000" alt="段体华" >
-            </div>
-            </a>
-            <div class="content">
-                <a class="author" href="https://my.oschina.net/chaostone" target="_blank">段体华</a>
-                 <div class="metadata">
-                    <span class="date">06/19 10:08</span>
-                </div>
-                <div class="text" data-emoji-render="">全局prefix有些粗，是否可以引入一些NamePolicy之类的东东，可以扩展表前缀甚至schema？</div>
-                <div class="actions">
-                    <a class="reply"> <i class="comment outline icon"></i> 回复 </a>
-                    <a class="ban"><i class="ban icon"></i> 举报</a>
-                </div>
-            </div>
-            
-            <div class="comments" >
-                  <div class="comment" name="rpl_318507472" id="rpl_318507472" >
-                   <a class="ui circular image avatar" href="#" target="_blank">
-                   <div class="osc-avatar small-portrait _35x35" title="冰力" >
-                      <img src="https://static.oschina.net/uploads/user/59/118197_50.JPG?t=1402367476000" alt="冰力" title="冰力">
-                   </div>
-                </a>
-                    <div class="content">
-                            <a class="author" href="#" target="_blank">冰力</a>
-                           <span class="osc-author-label">博主</span>
-                           <div class="metadata"> <span class="date">06/19 11:29</span> </div>
-                           <div class="text" data-emoji-render="">这个后面可以看看怎样设计更巧妙。</div>
-                           <div class="actions">
-                                    <a class="reply"><i class="comment outline icon"></i> 回复 </a>
-                           </div>
-                   </div>
-                  <div class="comments" children-comments="">
-                   <div class="comment" name="rpl_318562585" id="rpl_318562585" >
-                        <a class="ui circular image avatar" href="#" target="_blank">
-                            <div class="osc-avatar small-portrait _35x35 current-user-avatar" title="zb78354233" >
-                           <span class="text-portrait" style="background: #bdc3c7">z</span>
-                           </div>
-                        </a>
-                <div class="content">
-                      <a class="author" href="#" target="_blank">zb78354233</a>
-                <div class="metadata">
-                     <span class="date">刚刚</span>
-                </div>
-                <div class="text" data-emoji-render=""> 点赞</div>
-                <div class="actions">
-                     <a class="reply"><i class="comment outline icon"></i> 回复 </a>
-                     
-                </div>
-            </div>
-                <div class="comments" children-comments="">
-                   <div class="comment" name="rpl_318562585" id="rpl_318562585" >
-                      <a class="ui circular image avatar" href="#" target="_blank">
-                          <div class="osc-avatar small-portrait _35x35 current-user-avatar" title="zb78354233" ><span class="text-portrait" style="background: #bdc3c7">z</span> </div>
-                      </a>
-               <div class="content">
-                <a class="author" href="#" target="_blank">zb78354233</a>
-                <div class="metadata"> <span class="date">刚刚</span></div>
-                <div class="text" data-emoji-render="">点赞 </div>
-                <div class="actions">
-                      <a class="reply"><i class="comment outline icon"></i> 回复</a>
-                      
-                </div>
-             </div>
-           </div>
-           </div>
-        </div>
-      </div>
-     </div>
-    </div>
-  </div>
-            <div class="comment" name="rpl_318532729" id="rpl_318532729" >
-               <a class="ui circular image avatar" href="https://my.oschina.net/u/127025" target="_blank">
-               <div class="osc-avatar small-portrait _35x35" title="yong230">
-                      <img src="https://static.oschina.net/uploads/user/63/127025_50.jpg?t=1483884846000" alt="yong230" title="yong230">
-               </div>
-              </a>
-            <div class="content">
-                 <a class="author" href="https://my.oschina.net/u/127025" target="_blank">yong230</a>
-                <div class="metadata">
-                    <span class="date">前天 22:34</span>
-                </div>
-                <div class="text" data-emoji-render=""> 跟springmvc好像啊</div>
-                <div class="actions">
-                  <a class="reply"><i class="comment outline icon"></i> 回复</a>
-                      <a class="ban" ban-report="" data-id="318532729" data-obj-type="12" data-url="https://my.oschina.net/jiaqing/blog/4315707#rpl_318532729">
-                        <i class="ban icon"></i> 举报
-                   </a>
-                </div>
-             </div>
-           </div>
-                       <div class="comment" name="rpl_318532729" id="rpl_318532729" >
-               <a class="ui circular image avatar" href="https://my.oschina.net/u/127025" target="_blank">
-               <div class="osc-avatar small-portrait _35x35" title="yong230">
-                      <img src="https://static.oschina.net/uploads/user/63/127025_50.jpg?t=1483884846000" alt="yong230" title="yong230">
-               </div>
-              </a>
-            <div class="content">
-                 <a class="author" href="https://my.oschina.net/u/127025" target="_blank">yong230</a>
-                <div class="metadata">
-                    <span class="date">前天 22:34</span>
-                </div>
-                <div class="text" data-emoji-render=""> 跟springmvc好像啊</div>
-                <div class="actions">
-                  <a class="reply"><i class="comment outline icon"></i> 回复</a>
-                      <a class="ban" ban-report="" data-id="318532729" data-obj-type="12" data-url="https://my.oschina.net/jiaqing/blog/4315707#rpl_318532729">
-                        <i class="ban icon"></i> 举报
-                   </a>
-                </div>
-             </div>
-           </div>
+         @endforeach
+
 
     </div>
 
  <script type="text/javascript">
- function reply_msg(id){
+ function reply_msg(id,parent_id){
+     let reply_id = parent_id;
+     document.getElementById("parent_id").value= reply_id;
+   
 	 let dede_comment_post = document.getElementById("dede_comment_post");
 	 let q_id = id;
- 	 
  	 let reply_msg = document.getElementById("reply_msg_"+q_id);
-
- 	 
- 	
 	 if(dede_comment_post == null){
 		 document.getElementById("get_reply_id").value = q_id;
 		 

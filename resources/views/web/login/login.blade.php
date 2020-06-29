@@ -3,27 +3,30 @@
 <div class="reg_main">
     <div class="reg_top">用户登录</div>
     <div class="reg_box">
-        <form action="https://www.php1.cn/?s=user/login/checkLogin&from=https%3A%2F%2Fwww.php1.cn%2F" method="post">
+        <form action="#">
             <div class="main_left">
                 <div class="item_box">
-                    <div class="type">手机号码:</div>
-                    <div class="value"><input type="text" name="user_name" id="user_name" class="txt" /></div>
+                    <div class="value"><input placeholder="请输入昵称"  type="text" name="user_name" id="user_name" class="txt" /><label id="Nickname_Message"></label></div>
                 </div>
 
                 <div class="item_box">
-                    <div class="type">登录密码:</div>
-                    <div class="value"><input type="password" name="pass_word" id="pass_word" class="txt" /></div>
+                   
+                    <div class="value"><input placeholder="请输入密码"  type="password" name="pass_word" id="pass_word" class="txt" /><label id="Password_Message"></label></div>
                 </div>
 
                 <div class="item_box">
-                    <div class="type">验证码:</div>
-                    <div class="value"><img src="captcha" onclick="this.src='captcha?'+Math.random();" class="l21"/></div>
+                    
+                    <div class="value"><input placeholder="请输入验证码"  type="text" name="code" id="code" class="txt" /><img src="captcha" onclick="this.src='captcha?'+Math.random();" class="l21"/>
+                    <label id="Code_Message"></label>
+                    </div>
                 </div>
-                <div class="item_box">
+                <div class="submit">
                     <div class="type"></div>
-                    <div class="value"><input type="submit" class="bt" value="   &nbsp;&nbsp;立即登录 &nbsp; &nbsp; "/></div>
+                    <div class="value">
+                       <input type="hidden" name="_token" id="_token" class="txt" value="{{csrf_token()}}"/>
+                      <input type="button" id="submit" class="bt" value="&nbsp;&nbsp;立即登录 &nbsp; &nbsp; "/>
+                    </div>
                 </div>
-
             </div>
         </form>
         <div class="main_right">
