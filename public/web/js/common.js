@@ -43,7 +43,7 @@ if(document.getElementById("register"))
 		
 		 let _token = document.getElementById("_token").value;
 		 let formData = new FormData();
-		    formData.append("account_number", account_number);
+		    formData.append("phone_number", phone_number);
 		    formData.append("nickname", nickname);
 		    formData.append("password", password);
 		    formData.append("verification", verification);

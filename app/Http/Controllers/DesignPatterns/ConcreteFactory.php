@@ -20,6 +20,7 @@ class ConcreteFactory
             'news' => 'App\Model\News',
             'newscategory' => 'App\Model\NewsCategory',
             'release' => 'App\Model\Release',
+            'application' => 'App\Model\Application',
             'membercenter' => 'App\Model\MemberCenter',
             'comment' => 'App\Model\Comment',
             'reply' => 'App\Model\Reply',

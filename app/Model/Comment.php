@@ -10,8 +10,8 @@ class Comment extends Model
     public $timestamps = false;
     
     
-    public function query_comment(){
-        $user_data = $this::select('id','topic_id','content','from_uid','create_at')->get();
+    public function query_comment($type_id){
+        $user_data = $this::select('id','topic_id','content','from_uid','create_at')->where('topic_type',$type_id)->get();
         return $user_data;
     }
     /**

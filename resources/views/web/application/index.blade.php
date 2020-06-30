@@ -2,17 +2,19 @@
 @section('content')
 <main>
 <!-- 每列显示15条 -->
-    <h2 class="place">您现在的位置是：<a href="http://localhost/">主页</a> &gt; <a href="/yingxiaotuiguang/">营销推广</a> &gt; </h2>
+    <h2 class="place">您现在的位置是：<a href="http://www.getphp.cn">主页</a> &gt; <a href="/yingxiaotuiguang/">PHP应用</a> &gt; </h2>
     <div class="bloglist">
       <ul>
-        <li> <i class="blogpic"><a href="#" title="成都“网红池”捞出数千硬币 捐给抗震英雄"><img src="#" alt="成都“网红池”捞出数千硬币 捐给抗震英雄"></a></i>
+       @foreach($data as $key => $value)
+        <li> <i class="blogpic"><a href="{{route('p_detail',['id' => $value->id])}}" title="{{$value->title}}"><img src="{{$value->list_image}}" alt="{{$value->title}}"></a></i>
           <dl>
-            <dt><a href="#" title="成都“网红池”捞出数千硬币 捐给抗震英雄" target="_blank"><b>成都“网红池”捞出数千硬币 捐给抗震英雄</b></a></dt>
-            <dd><span class="bloginfo">头条新闻栏目的热点新闻系列,成都“网红池”捞出数千硬币 捐给抗震英雄...</span>
-              <p class="timeinfo"><span class="lanmu"><a href="/yingxiaotuiguang/">营销推广</a></span><span class="date">2017-06-24</span></p>
-              <a class="read" href="/yingxiaotuiguang/">阅读更多</a> </dd>
+            <dt><a href="{{route('p_detail',['id' => $value->id])}}" title="{{$value->title}}" target="_blank"><b>{{$value->title}}</b></a></dt>
+            <dd><span class="bloginfo">{{$value->introduction}}</span>
+              <p class="timeinfo"><span class="lanmu"><a href="/yingxiaotuiguang/">PHP应用</a></span><span class="date">{{date('Y-m-d',$value->release_date)}}</span></p>
+              <a class="read" href="{{route('p_detail',['id' => $value->id])}}">阅读更多</a> </dd>
           </dl>
         </li> 
+        @endforeach
       </ul>
     </div>
     <!--bloglist end--> 

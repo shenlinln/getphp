@@ -474,7 +474,7 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="">
-								<a href="tables.html">
+								<a href="{{route('a_applic_list')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									PHP应用列表
 								</a>

@@ -48,7 +48,7 @@ Route::get('member_center',"MemberCenterController@index");
 });
 //后台管理
  Route::namespace('Admin')->group(function () {
-   Route::match(['get', 'post'],'admin/login',"AdminLoginController@Admin_Login");
+   Route::match(['get', 'post'],'admin/gkwbackstage-login',"AdminLoginController@Admin_Login");
    Route::post('admin/users_add',"AdminLoginController@Admin_Users_Add");
         
     });
@@ -61,5 +61,7 @@ Route::group(['namespace' => 'Admin','middleware' => ['admin.login']], function(
      Route::get('admin/release_edit/{id}',"AdminReleaseController@Admin_Release_Edit")->where(['id' => '[0-9]+'])->name('a_release_edit');
      
      Route::get('admin/release_detail/{id}',"AdminReleaseController@Admin_Release_Detail")->where(['id' => '[0-9]+'])->name('a_release_detail');
+     Route::get('admin/application_list',"AdminApplicationController@Admin_Application_List")->name('a_applic_list');
+     Route::match(['get', 'post'],'admin/application_add',"AdminApplicationController@Admin_Application_add")->name('a_applic_add');
             
 });

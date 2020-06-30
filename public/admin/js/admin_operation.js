@@ -26,7 +26,7 @@ if(document.getElementById("admin_login"))
 	            type:'post',
 	            async:'true',
 	            data:formData,
-	            url:'/admin/login',
+	            url:'/admin/gkwbackstage-login',
 	            success:function(data){
 	            	 let json_data = JSON.parse(data);
 	            	 if(json_data.bool == true){
@@ -66,6 +66,16 @@ if(document.getElementById("release_add"))
 	document.getElementById("release_add").onclick=function()
 	{
 		self.location="/admin/release_add";
+	}
+}
+/**
+ * 添加发布应用添加按钮
+ */
+if(document.getElementById("application_add"))
+{
+	document.getElementById("application_add").onclick=function()
+	{
+		self.location="/admin/application_add";
 	}
 }
 //更改发布按钮

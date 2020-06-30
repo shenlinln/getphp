@@ -16,7 +16,7 @@ class AdminLogin
     public function handle($request, Closure $next)
     {
         if(empty($request->session()->get('username'))){
-            return redirect('admin/login');
+            return redirect('admin/gkwbackstage-login');
         }
         return $next($request);
     }

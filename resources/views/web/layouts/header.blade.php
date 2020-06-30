@@ -89,7 +89,7 @@
       <h2>网站版权</h2>
       <p>未经授权禁止转载、摘编、复制或建立镜像，如有违反，追究法律责任。举报邮箱：3296364496@qq.com</p>
       <p>&nbsp;</p>
-      <p>苏ICP备 20039179</p>
+      <p><a href="http://www.beian.miit.gov.cn/" style="color: white;">苏ICP备 20039179</a></p>
     </div>
   </div>
 </footer>

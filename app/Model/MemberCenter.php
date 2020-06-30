@@ -9,12 +9,34 @@ class MemberCenter extends Model
     protected  $table  = 'member_center';
     public $timestamps = false;
     
-    public function member_center_add($account_number,$password,$nickname,$salt){
+    
+    public function member_login($name,$password){
+
+       $user_login = $this::where('nickname', $name)->where('password', $password)->first();
+       if(!empty($user_login)){
+           return true;
+       }else{
+           throw new \Exception("查询失败");
+       }
+                
+    }
+    
+    public function member_salt($name){
+        $username = $this::where('nickname',$name)->first();
+        if(!empty($username)){
+            $salt = $username->salt;
+            return $salt;
+        }else{
+            throw new \Exception("没有找到对应的用户昵称，查询失败");
+        }
+        
+        
+        
+    }
+    
+    public function member_center_add($password,$nickname,$salt){
         
 
-        if(isset($account_number) && !empty($account_number)){
-            $this->account_number = $account_number;
-        }
         if(isset($password) && !empty($password)){
             $this->password = $password;
         }
@@ -33,7 +55,6 @@ class MemberCenter extends Model
         $this->mobile = '';
         $this->head_portrait = '';
         $this->freeze = 0;
-        $this->verif_email = 1;
         $this->salt = $salt;
         $this->create_at = time();
         $this->update_at = 0;

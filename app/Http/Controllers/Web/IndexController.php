@@ -30,15 +30,13 @@ class IndexController extends Controller
             Redis::SET('rel_read_count_'.$id,0);
           
         }
-     
-       Redis::INCR('rel_read_count_'.$id);
+        Redis::INCR('rel_read_count_'.$id);
         $release_read_count =  Redis::GET('rel_read_count_'.$id);
-      
         $releast = $this->setClass('release');
         $data = $releast->web_release_detail($id);
         $this->model_comment = $this->setClass('comment');
-        
-        $comment = $this->model_comment->query_comment();
+        $type_id = 1;
+        $comment = $this->model_comment->query_comment($type_id);
         $this->model_common = $this->setClass('common');
         
         $this->model_reply = $this->setClass('reply');

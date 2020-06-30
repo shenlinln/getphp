@@ -6,11 +6,12 @@ use App\Http\Controllers\DesignPatterns\ConcreteFactory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 use App\Common\JSMS;
-
+use Illuminate\Support\Facades\Log;
 class LoginController extends Controller
 {
     //
     protected $factory;
+    protected $model_membercenter;
     protected  function setClass($class){
         $this->factory = new ConcreteFactory();
         $data = $this->factory->createVehicle($class);
@@ -21,6 +22,7 @@ class LoginController extends Controller
     private string $verification;
     private string $nickname;
     private string $salt;
+  
     const  EMAIL = 'shen_lin_msof@hotmail.com';
     const EMAILPASSWORD = 'SLL&%84869605';
     const SECURE = 'STARTTLS';
@@ -30,7 +32,36 @@ class LoginController extends Controller
     public function Login(Request $request){
         if($request->isMethod('post')){
             
-            var_dump($request->all());die();
+            $params = $request->all();
+            $code = $params['code'];
+            $getcode = $request->session()->get('code');
+            if(strtolower($code) != $getcode){
+                return json_encode(['bool' => false,'message' => '验证码输入有误，请重新输入']);
+            }
+            
+            $this->model_membercenter = $this->setClass('membercenter');
+            
+            $this->nickname = trim($params['nickname']);
+            try{
+              $this->salt = $this->model_membercenter->member_salt($this->nickname);
+             
+              $common = $this->setClass('common');
+              $this->password = $common->encrypt_password(trim($params['password']),$this->salt);
+              try{
+                  $this->model_membercenter->member_login($this->nickname,$this->password);
+                  return json_encode(['bool' => true,'message' => '登陆成功']);
+              }catch(\Exception $e){
+                  Log::debug($e->getMessage());
+                  return json_encode(['bool' => false,'message' => '登陆失败']);
+              }
+            }catch (\Exception $e){
+                Log::debug($e->getMessage());
+                return json_encode(['bool' => false,'message' => '用户名不存在，请您先注册，后登陆']);
+               // echo '用户查询失败： ', $e->getMessage();
+            }
+            
+           
+            //var_dump($this->salt);die();
         }
        // 
         return view('web.login.login');
@@ -73,8 +104,6 @@ class LoginController extends Controller
            }else{
               return json_encode(['bool' => false,'message' => '添加失败']);
            }
-                
-           
             
         }
         return view('web.login.registered');
