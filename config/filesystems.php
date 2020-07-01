@@ -60,6 +60,24 @@ return [
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
+        'news' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/news'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+        'technology' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/technology'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
+        'release' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/release'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
         'oss' => [
             'driver'        => 'oss',
             'access_id'     => 'LTAI4Fs56NYdNsnr13jwH7Qz',

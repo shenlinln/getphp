@@ -7,10 +7,10 @@
 <div class="breadcrumbs ace-save-state" id="breadcrumbs">
 	<ul class="breadcrumb">
 		<li><i class="ace-icon fa fa-home home-icon"></i><a href="#">首页</a></li>
-		<li><a href="#">新闻资讯</a></li>
+		<li><a href="#">相关技术资讯</a></li>
 		<li class="active">列表</li>
 	 </ul>
-       <button class="btn btn-primary" id="news_add">添加新闻</button>
+       <button class="btn btn-primary" id="technology_add">添加技术资讯</button>
 	<div class="nav-search" id="nav-search">
 		<form class="form-search">
 			<span class="input-icon">
@@ -21,7 +21,7 @@
 	</div>
 </div>
 		<div class="page-content">
-			<div class="page-header"><h1>新闻资讯<small><i class="ace-icon fa fa-angle-double-right"></i>列表</small></h1></div>
+			<div class="page-header"><h1>技术资讯<small><i class="ace-icon fa fa-angle-double-right"></i>列表</small></h1></div>
 			 <div class="row">
 				<div class="col-xs-12">
 					<div class="row">
@@ -31,7 +31,7 @@
 									<tr>
 										<th class="detail-col">id</th>
 										<th>标题</th>
-										<th>新闻类型</th>
+										<th>资讯类型</th>
 										<th class="hidden-480">发布时间</th>
 										<th>发布作者</th>
 										<th class="hidden-480">审核</th>

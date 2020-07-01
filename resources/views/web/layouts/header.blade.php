@@ -2,9 +2,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>php中文网</title>
-<meta name="keywords" content="PHP中文网，php语言，Linux,MySQL">
-<meta name="description" content="网站描述">
+<title>PHP资源分享门户</title>
+<meta name="keywords" content="PHP，PHP中文网，php语言，php技术，Linux,MySQL">
+<meta name="description" content="GETPHP网站主要是资源分享为主的专业网站，面向PHP学习研究者提供：最新PHP资讯、原创内容、开源代码">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon"  href="{{URL::asset('/web/images/favicon.ico')}}" >
 <link href="{{URL::asset('web/css/base.css')}}" rel="stylesheet">
@@ -46,15 +46,13 @@
           </li>
       <li class="menu"><a href="{{route('n_index')}}" target="_blank" id="">相关技术</a>
             <ul class="sub">
-              <li><a href="#">MySQL</a></li>
-              <li><a href="#">Nginx</a></li>
-              <li><a href="#">Linux</a></li>
+              <li><a href="#">linux</a></li>
+              <li><a href="#">web</a></li>
+              <li><a href="#">mysql</a></li>
              </ul>
           </li>
-        
           <li ><a href="https://www.php.net/" target="_blank" id="">PHP官网</a>
             <ul style="display:none">
-              
             </ul>
           </li> 
           

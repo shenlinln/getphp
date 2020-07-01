@@ -59,6 +59,17 @@ if(document.getElementById("news_add"))
 }
 
 /**
+ * 添加相关技术资讯
+ */
+if(document.getElementById("technology_add"))
+{
+	document.getElementById("technology_add").onclick=function()
+	{
+		self.location="/admin/technology_add";
+	}
+}
+
+/**
  * 添加发布PHP添加按钮
  */
 if(document.getElementById("release_add"))

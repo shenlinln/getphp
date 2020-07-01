@@ -3,10 +3,9 @@
 	<head>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
-		<title>php中文网-后台管理</title>
-
-		<meta name="description" content="overview &amp; stats" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+		<title>PHP资源分享门户</title>
+        <meta name="keywords" content="PHP,PHP资讯，php技术">
+        <meta name="description" content="GETPHP网站主要是资源分享为主的专业网站，面向PHP学习研究者提供：最新PHP资讯、原创内容、开源代码">
 		<link rel="stylesheet" href="{{URL::asset('admin/css/bootstrap.css')}}" />
 		<link rel="stylesheet" href="{{URL::asset('admin/css/font-awesome.min.css')}}" />
 		<link rel="stylesheet" href="{{URL::asset('admin/css/fonts.googleapis.com.css')}}" />
@@ -457,7 +456,7 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="">
-								<a href="tables.html">
+								<a href="{{route('a_technology_list')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									 相关技术列表
 								</a>

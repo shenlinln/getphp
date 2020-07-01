@@ -142,7 +142,7 @@
 .fengm .fpic:hover i { opacity: 1 }
 .fengm .fpic:hover img { transform: scale(1.1) }
 .fmnews { margin: 20px; clear: both }
-.fmnews li { background: url(/images/li.png) no-repeat left center; padding-left: 20px; line-height: 30px;    text-overflow: ellipsis;
+.fmnews li { background: url(/web/images/li.png) no-repeat left center; padding-left: 20px; line-height: 30px;    text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden; }
 .fmnews li span { float: right; color: #999 }

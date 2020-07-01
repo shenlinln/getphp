@@ -19,6 +19,8 @@ class ConcreteFactory
             'admin' =>'App\Model\Admin',
             'news' => 'App\Model\News',
             'newscategory' => 'App\Model\NewsCategory',
+            'technology' => 'App\Model\Technology',
+            'technologycategory' => 'App\Model\TechnologyCategory',
             'release' => 'App\Model\Release',
             'application' => 'App\Model\Application',
             'membercenter' => 'App\Model\MemberCenter',

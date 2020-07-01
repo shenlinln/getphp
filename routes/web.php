@@ -63,5 +63,8 @@ Route::group(['namespace' => 'Admin','middleware' => ['admin.login']], function(
      Route::get('admin/release_detail/{id}',"AdminReleaseController@Admin_Release_Detail")->where(['id' => '[0-9]+'])->name('a_release_detail');
      Route::get('admin/application_list',"AdminApplicationController@Admin_Application_List")->name('a_applic_list');
      Route::match(['get', 'post'],'admin/application_add',"AdminApplicationController@Admin_Application_add")->name('a_applic_add');
+     
+     Route::get('admin/technology_list',"AdminTechnologyController@Admin_Technology_List")->name('a_technology_list');
+     Route::match(['get', 'post'],'admin/technology_add',"AdminTechnologyController@Admin_Technology_Add")->name('a_technology_add');
             
 });

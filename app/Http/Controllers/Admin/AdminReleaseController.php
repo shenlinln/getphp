@@ -26,26 +26,39 @@ class AdminReleaseController extends Controller
             if(empty($data['id']) && !isset($data['id']))
             {
                 //添加操作
-                 $image_file = $request->file('images');
-                 $dir_yeramonth =  date('Ym');
-                 $image_url = Storage::putFile('uploads/release_images/'.$dir_yeramonth,$image_file);
-            
-                 $image = ['images' => $image_url];
-                 $merge = array_merge($data,$image);
-                 $result = $release->release_add($merge);
-                 if(!empty($result)){
-                    return json_encode(['bool' => true,'message' => '添加成功']);
-                }else{
-                    return json_encode(['bool' => false,'message' => '添加失败']);
+                 $file = $request->file('images');
+                 if($file->isValid()){
+                     $ext = $file->getClientOriginalExtension();
+                     $path = $file->getRealPath();
+                     $filename = date('Ymdhis').'.'.$ext;
+                     Storage::disk('release')->put($filename, file_get_contents($path));
+                     $arr = ['images' => 'uploads/release/'.$filename];
+                     $merge = array_merge($data,$arr);
+                     $result = $release->release_add($merge);
+                     if(!empty($result)){
+                         return json_encode(['bool' => true,'message' => '添加成功']);
+                     }else{
+                         return json_encode(['bool' => false,'message' => '添加失败']);
+                     }
+                 }else{
+                     return json_encode(['bool' => false,'message' => '文件不符合要求']);
                  }
+
+       
             }else{
                 //修改
                 if(!empty($data['images'])){
-                  $image_file = $request->file('images');
-                  $dir_yeramonth =  date('Ym');
-                  $image_url = Storage::putFile('uploads/release_images/'.$dir_yeramonth,$image_file);
-                  $image = ['images' => $image_url];
-                  $merge = array_merge($data,$image);
+                  $file = $request->file('images');
+                  if($file->isValid()){
+                      $ext = $file->getClientOriginalExtension();
+                      $path = $file->getRealPath();
+                      $filename = date('Ymdhis').'.'.$ext;
+                      Storage::disk('release')->put($filename, file_get_contents($path));
+                      $arr = ['images' => 'uploads/release/'.$filename];
+                      $merge = array_merge($data,$arr);
+                   }else{
+                       return json_encode(['bool' => false,'message' => '文件不符合要求']);
+                   }
                 }else{
                   $merge = $data;
                 }

@@ -4,10 +4,9 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Validator;
-
-class News extends Model
+class Technology extends Model
 {
-    protected  $table  = 'news';
+    protected  $table  = 'technology';
     public $timestamps = false;
     
     public function web_news_recommend($news_type,$recommend,$pagesize){
@@ -19,13 +18,13 @@ class News extends Model
         $data = $this::where('id','=',$id)->first();
         return $data;
     }
-    public function admin_news_list(){
-        $list = $this::select('news.id','news.title','news_category.news_name','news.release_date','news.author','news.audit_status')
-        ->join('news_category', 'news_category.id', '=', 'news.news_type')
-        ->orderBy('news.id','DESC')->paginate(15);
+    public function admin_technology_list(){
+        $list = $this::select('technology.id','technology.title','technology_category.news_name','technology.release_date','technology.author','technology.audit_status')
+        ->join('technology_category', 'technology_category.id', '=', 'technology.news_type')
+        ->orderBy('technology.id','DESC')->paginate(15);
         return $list;
     }
-    public function news_add($request){
+    public function technology_add($request){
         
         
         $rules = [
@@ -75,8 +74,12 @@ class News extends Model
         $this->is_hot = intval($request['is_hot']);
         $this->browse = 0;
         $this->audit_status = 0;
-        $result = $this->save();
-        return $result;
+        //返回true 失败返回false
+        if(!empty($this->save())){ 
+            return true;
+        }else{
+            throw new \Exception("插入相关技术资讯失败");
+        }
         
         
     }
