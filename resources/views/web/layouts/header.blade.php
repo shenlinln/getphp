@@ -46,13 +46,15 @@
           </li>
       <li class="menu"><a href="{{route('n_index')}}" target="_blank" id="">相关技术</a>
             <ul class="sub">
-              <li><a href="#">linux</a></li>
-              <li><a href="#">web</a></li>
-              <li><a href="#">mysql</a></li>
+              <li><a href="#">MySQL</a></li>
+              <li><a href="#">Nginx</a></li>
+              <li><a href="#">Linux</a></li>
              </ul>
           </li>
+        
           <li ><a href="https://www.php.net/" target="_blank" id="">PHP官网</a>
             <ul style="display:none">
+              
             </ul>
           </li> 
           
