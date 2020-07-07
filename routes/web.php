@@ -57,6 +57,8 @@ Route::group(['namespace' => 'Admin','middleware' => ['admin.login']], function(
      Route::get('admin/news_list',"AdminNewsController@Admin_News_List")->name('a_news_list');
      Route::get('admin/release_list',"AdminReleaseController@Admin_Release_List")->name('a_release_list');
      Route::match(['get', 'post'],'admin/news_add',"AdminNewsController@Admin_News_Add")->name('a_news_add');
+     Route::post('admin/UploadImageFile',"AdminNewsController@UploadImageFile");
+     
      Route::match(['get', 'post'],'admin/release_add',"AdminReleaseController@Admin_Release_Add")->name('a_release_add');
      Route::get('admin/release_edit/{id}',"AdminReleaseController@Admin_Release_Edit")->where(['id' => '[0-9]+'])->name('a_release_edit');
      
@@ -66,5 +68,7 @@ Route::group(['namespace' => 'Admin','middleware' => ['admin.login']], function(
      
      Route::get('admin/technology_list',"AdminTechnologyController@Admin_Technology_List")->name('a_technology_list');
      Route::match(['get', 'post'],'admin/technology_add',"AdminTechnologyController@Admin_Technology_Add")->name('a_technology_add');
+     
+     
             
 });

@@ -55,5 +55,16 @@ class AdminNewsController extends Controller
           return view('admin.news.news_add',compact('news_type'));
         }
     }
+    function UploadImageFile(Request $request){
+        
+        $file = $request->file('file');
+        if($file->isValid()){
+            $ext = $file->getClientOriginalExtension();
+            $path = $file->getRealPath();
+            $filename = date('Ymdhis').'.'.$ext;
+            $images_name =  Storage::disk('contentimages')->put($filename, file_get_contents($path));
+            echo '{"status":1,"content":"上传成功","url":"'.$images_name.'"}';
+        }
+    }
     
 }

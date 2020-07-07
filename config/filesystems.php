@@ -78,6 +78,12 @@ return [
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
+        'contentimages' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/contentimages'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
         'oss' => [
             'driver'        => 'oss',
             'access_id'     => 'LTAI4Fs56NYdNsnr13jwH7Qz',

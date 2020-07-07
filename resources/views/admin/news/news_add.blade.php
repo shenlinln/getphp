@@ -105,7 +105,7 @@ laydate.render({
 var E = window.wangEditor
 var editor1 = new E('#news_content')
 //editor1.customConfig.uploadImgShowBase64 = true
- editor1.customConfig.uploadImgServer = 'https://www.gongkew.com/api/UploadImageFile';
+ editor1.customConfig.uploadImgServer = 'https://www.getphp.cn/admin/UploadImageFile';
 editor1.customConfig.uploadFileName = 'file';
 editor1.customConfig.uploadImgMaxSize = 1 * 1024 * 1024
 editor1.customConfig.uploadImgHeaders = {'Accept' : 'multipart/form-data'};

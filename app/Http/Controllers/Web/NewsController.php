@@ -38,6 +38,11 @@ class NewsController extends Controller
         return view('web.news.index',compact('news_recommend_bc','news_list_bc','news_recommend_hy','news_list_hy','news_recommend_zh','news_list_zh'));
         
     }
+    /**
+            * 详细页
+     * @param Request $request
+     * @return object
+     */
     public function Detail(Request $request){
         $id = intval($request->id);
         $this->model_news = $this->setClass('news');
@@ -63,4 +68,5 @@ class NewsController extends Controller
         
         
     }
+
 }

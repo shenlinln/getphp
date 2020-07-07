@@ -6,12 +6,12 @@
     <div class="bloglist">
       <ul>
        @foreach($data as $key => $value)
-        <li> <i class="blogpic"><a href="{{route('p_detail',['id' => $value->id])}}" title="{{$value->title}}"><img src="{{$value->list_image}}" alt="{{$value->title}}"></a></i>
+        <li> <i class="blogpic"><a href="{{route('p_detail',['id' => $value->id])}}" title="{{$value->title}}" target="_blank"><img src="{{$value->list_image}}" alt="{{$value->title}}"></a></i>
           <dl>
             <dt><a href="{{route('p_detail',['id' => $value->id])}}" title="{{$value->title}}" target="_blank"><b>{{$value->title}}</b></a></dt>
             <dd><span class="bloginfo">{{$value->introduction}}</span>
               <p class="timeinfo"><span class="lanmu"><a href="/yingxiaotuiguang/">PHP应用</a></span><span class="date">{{date('Y-m-d',$value->release_date)}}</span></p>
-              <a class="read" href="{{route('p_detail',['id' => $value->id])}}">阅读更多</a> </dd>
+              <a class="read" href="{{route('p_detail',['id' => $value->id])}}" target="_blank">阅读更多</a> </dd>
           </dl>
         </li> 
         @endforeach
