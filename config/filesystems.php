@@ -84,17 +84,7 @@ return [
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
-        'oss' => [
-            'driver'        => 'oss',
-            'access_id'     => 'LTAI4Fs56NYdNsnr13jwH7Qz',
-            'access_key'    => '4ICDabY9OEctkymAgVCyNNpOUAPDkG',
-            'bucket'        => 'soucat',
-            'endpoint'      => 'oss-cn-beijing.aliyuncs.com',
-            'cdnDomain'     => '',
-            'ssl'           => true, //
-            'isCName'       => false, //
-            'debug'         => true
-        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),
