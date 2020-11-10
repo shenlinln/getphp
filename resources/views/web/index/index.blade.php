@@ -5,15 +5,11 @@
     <!--banner begin-->
     <div class="banner">
       <div id="banner" class="fader">
-        <li class="slide" ><a href="/seo/184.html" title="画面莫名喜感 交警巡查拿下一车“神" target="_blank">
-              <img src="http://k67.zzidc.info/uploads/allimg/c170622/14b1213035Z50-122N1.jpg" alt="画面莫名喜感 交警巡查拿下一车“神"><span class="imginfo">画面莫名喜感 交警巡查拿下一车“神</span></a>
+      @foreach($adv as $a_key => $a_v)
+        <li class="slide" ><a href="{{$a_v->address_url}}" title="{{$a_v->title}}" target="_blank">
+              <img src="{{$a_v->banner_images}}" alt="{{$a_v->title}}"><span class="imginfo">{{$a_v->title}}</span></a>
         </li>
-       <li class="slide" ><a href="/seo/185.html" title="[新春走基层]冬闲种大棚 蘑菇撑起“" target="_blank">
-             <img src="http://k67.zzidc.info/uploads/allimg/c170622/14b121310UD0-206293.jpg" alt="[新春走基层]冬闲种大棚 蘑菇撑起“"><span class="imginfo">[新春走基层]冬闲种大棚 蘑菇撑起“</span></a>
-        </li>
-        <li class="slide" ><a href="/seo/183.html" title="北京首次抽检京Ⅵ汽油 存质量问题将" target="_blank">
-            <img src="http://k67.zzidc.info/uploads/allimg/c170622/14b1213035Z50-122N1.jpg" alt="北京首次抽检京Ⅵ汽油 存质量问题将"><span class="imginfo">北京首次抽检京Ⅵ汽油 存质量问题将</span></a>
-        </li>
+       @endforeach
 
         <div class="fader_controls">
           <div class="page prev" data-target="prev">&lsaquo;</div>

@@ -80,6 +80,16 @@ if(document.getElementById("release_add"))
 	}
 }
 /**
+*添加广告图
+ */
+if(document.getElementById("advertising_add")){
+	
+	document.getElementById("advertising_add").onclick = function(){
+		
+		self.location = "/admin/advertising_add";
+	}
+}
+/**
  * 添加发布应用添加按钮
  */
 if(document.getElementById("application_add"))

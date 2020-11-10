@@ -78,6 +78,12 @@ return [
             'url' => env('APP_URL').'/public',
             'visibility' => 'public',
         ],
+        'advpicture' => [
+            'driver' => 'local',
+            'root' => public_path('uploads/advpicture'),
+            'url' => env('APP_URL').'/public',
+            'visibility' => 'public',
+        ],
         'contentimages' => [
             'driver' => 'local',
             'root' => public_path('uploads/contentimages'),

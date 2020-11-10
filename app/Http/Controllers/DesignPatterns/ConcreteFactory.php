@@ -17,6 +17,7 @@ class ConcreteFactory
     {
         $this->typeList = [
             'admin' =>'App\Model\Admin',
+            'advertising' =>'App\Model\Advertising',
             'news' => 'App\Model\News',
             'newscategory' => 'App\Model\NewsCategory',
             'technology' => 'App\Model\Technology',

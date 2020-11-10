@@ -1,5 +1,5 @@
 <?php
-interface CommonOp{
+interface ICommonOp{
     
     public function getDataMessage($query);
     

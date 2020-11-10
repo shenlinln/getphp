@@ -54,6 +54,9 @@ Route::get('member_center',"MemberCenterController@index");
     });
 Route::group(['namespace' => 'Admin','middleware' => ['admin.login']], function(){
      Route::get('admin/main',"AdminMainController@Admin_Main");
+     
+     Route::get('admin/advertising_list',"AdminAdvertisingController@AdminAdvertisingList")->name('a_advertising_list');
+     Route::match(['get', 'post'],'admin/advertising_add',"AdminAdvertisingController@AdminAdvertisingAdd")->name('a_advertising_add');
      Route::get('admin/news_list',"AdminNewsController@Admin_News_List")->name('a_news_list');
      Route::get('admin/release_list',"AdminReleaseController@Admin_Release_List")->name('a_release_list');
      Route::match(['get', 'post'],'admin/news_add',"AdminNewsController@Admin_News_Add")->name('a_news_add');

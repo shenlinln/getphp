@@ -12,8 +12,9 @@ class IndexController extends Controller
     protected  object $model_comment;
     protected  object $model_reply;
     protected  object $model_common;
-   
+    protected  object $modelAdvertising; 
     protected  object  $factory;
+    private    const    BELONGTYPE = 1;  
     protected  function setClass($class){
         $this->factory = new ConcreteFactory();
         $data = $this->factory->createVehicle($class);
@@ -21,8 +22,17 @@ class IndexController extends Controller
     }
     public function Index(){
         $releast = $this->setClass('release');
+        $this->modelAdvertising = $this->setClass('advertising');
+        if(is_object($this->modelAdvertising)){
+            $belong_type = intval(self::BELONGTYPE);
+            $adv = $this->modelAdvertising->web_advertising_throw($belong_type);
+           
+        }else{
+            echo '不是对象';
+        }
+       
         $data = $releast->web_release_list();
-        return view('web.index.index',compact('data'));
+        return view('web.index.index',compact('data','adv'));
     }
     public function Detail(Request $request){
         $id = intval($request->id);

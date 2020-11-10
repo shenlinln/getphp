@@ -23,6 +23,12 @@ class CommonFunction{
         return ['0' => '通过','1' => '待审核','2' => '不通过'];
         
     }
+    /**
+     * 广告栏目
+     */
+    public function AdvertisingColumn(){
+        return ['1' => '首页',2 => '其他'];
+    }
 
     /**
        * 获得随机字符串

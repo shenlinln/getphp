@@ -401,7 +401,7 @@
 								<b class="arrow"></b>
 							</li>
 					        <li class="">
-								<a href="{{route('a_news_list')}}">
+								<a href="{{route('a_advertising_list')}}">
 									<i class="menu-icon fa fa-caret-right"></i>
 									  广告图
 								</a>
