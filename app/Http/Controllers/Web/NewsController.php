@@ -39,7 +39,7 @@ class NewsController extends Controller
         
     }
     /**
-            * 详细页
+     * 详细页
      * @param Request $request
      * @return object
      */
